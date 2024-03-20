@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speedWalk;
     [SerializeField] private float _speedRun;
     [SerializeField] private float player_nomber;
+    [SerializeField] private Functions Functions;
 
     private CharacterController _characterController;
     private Vector3 _walkDirection;
@@ -40,27 +41,13 @@ public class Player : MonoBehaviour
         _walkDirection = transform.right * x + transform.forward * z;
         _walkDirection.Normalize();
 
-        FindNearObject("Enemy");
+        if (Functions.FindNearObject("Enemy", transform.position)){
+            transform.LookAt(Functions.FindNearObject("Enemy", transform.position).transform);
+        }
     
 
     }
-    private void FindNearObject(string Tag)
-    {
-        GameObject[] All_Enemy = new GameObject[GameObject.FindGameObjectsWithTag(Tag).Length];
-        GameObject Near_Enemy = new GameObject();
-        All_Enemy = GameObject.FindGameObjectsWithTag(Tag);
-        Near_Enemy = null;
-        foreach (GameObject One_Enemy in All_Enemy)
-        {
-            if (!Near_Enemy) Near_Enemy = One_Enemy;
-            if ((Near_Enemy.transform.position - transform.position).sqrMagnitude > (One_Enemy.transform.position - transform.position).sqrMagnitude){
-                Near_Enemy = One_Enemy;
-            }
-        }
-        if (Near_Enemy) transform.LookAt(Near_Enemy.transform);
-
-    }
-
+ 
     private void FixedUpdate()
     {
         Walk(_walkDirection);
