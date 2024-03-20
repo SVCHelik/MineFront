@@ -14,8 +14,6 @@ public class Player : MonoBehaviour
     private float _speed;
     public CamField_moove _CamF;
 
-    GameObject[] All_Enemy;
-    public GameObject Near_Enemy;
     private void Start()
     {
         _speed = _speedWalk;
@@ -42,7 +40,15 @@ public class Player : MonoBehaviour
         _walkDirection = transform.right * x + transform.forward * z;
         _walkDirection.Normalize();
 
-        All_Enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        FindNearObject("Enemy");
+    
+
+    }
+    private void FindNearObject(string Tag)
+    {
+        GameObject[] All_Enemy = new GameObject[GameObject.FindGameObjectsWithTag(Tag).Length];
+        GameObject Near_Enemy = new GameObject();
+        All_Enemy = GameObject.FindGameObjectsWithTag(Tag);
         Near_Enemy = null;
         foreach (GameObject One_Enemy in All_Enemy)
         {
@@ -62,7 +68,7 @@ public class Player : MonoBehaviour
 
     private void Walk(Vector3 direction)
     {
-        Debug.Log(transform.forward);
+        
         //Vector3 direction_fix = new Vector3 (direction.x * transform.forward + direction.z * transform.forward)
         Vector3 fixdir = transform.InverseTransformDirection(direction);
         _characterController.Move(fixdir * _speedWalk * Time.fixedDeltaTime);

@@ -21,12 +21,30 @@ public class Enemy : MonoBehaviour
         Vector3 direction2 = player2.transform.position - transform.position;
         //Debug.Log(angle);
         //Debug.Log(direction);
-        if (direction1.sqrMagnitude > direction2.sqrMagnitude) transform.LookAt(player2.transform);
-        else transform.LookAt(player1.transform);
+        FindNearObject("Player");
         
     }
     private void FixedUpdate() {
         EnemyController.Move(transform.forward * moveSpeed * Time.deltaTime);
+    }
+
+
+    private void FindNearObject(string Tag) // Функция аналогичная Player
+    {
+        GameObject[] All_Enemy = new GameObject[GameObject.FindGameObjectsWithTag(Tag).Length];
+        GameObject Near_Enemy = new GameObject();
+        All_Enemy = GameObject.FindGameObjectsWithTag(Tag);
+        Near_Enemy = null;
+        foreach (GameObject One_Enemy in All_Enemy)
+        {
+            if (!Near_Enemy) Near_Enemy = One_Enemy;
+            if ((Near_Enemy.transform.position - transform.position).sqrMagnitude > (One_Enemy.transform.position - transform.position).sqrMagnitude){
+                Near_Enemy = One_Enemy;
+            }
+
+        }
+        if (Near_Enemy) transform.LookAt(Near_Enemy.transform);
+       
     }
 
 }
