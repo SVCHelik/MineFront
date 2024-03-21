@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using NTC.Pool;
+
+//using NTC.Pool;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,17 +18,19 @@ using UnityEngine.Tilemaps;
 public class ExpGenScripts: MonoBehaviour{
     
     /// <summary>
-    /// Draws the map to the screen
+    /// Renders a map based on the given integer map, field size, and prefab objects.
     /// </summary>
-    /// <param name="map">Map that we want to draw</param>
-    /// <param name="tilemap">Tilemap we will draw onto</param>
-    /// <param name="tile">Tile we will draw with</param>
-    public static GameObject[,] RenderMap(int[,] map, int fieldSize, GameObject pref1, GameObject pref2)
+    /// <param name="map">The integer map representing the tiles.</param>
+    /// <param name="fieldSize">The size of the field.</param>
+    /// <param name="pref1">The first prefab object.</param>
+    /// <param name="pref2">The second prefab object.</param>
+    /// <param name="shift">The shift vector.</param>
+    /// <returns>The rendered game objects in a 2D array.</returns>
+    public static GameObject[,] RenderMap(int[,] map, int fieldSize, GameObject pref1, GameObject pref2, Vector2Int shift)
     {
         int MapWidth = map.GetUpperBound(0);
-      
-        Vector2 offset = new Vector2(MapWidth/2 - fieldSize/2, MapWidth/2 - fieldSize/2);
-       
+        Vector2 offset = new Vector2Int(MapWidth/2 - fieldSize/2, MapWidth/2 - fieldSize/2);
+        offset+=shift;
         GameObject[,] field = new GameObject[fieldSize, fieldSize];
 
         for (int x = 0; x < fieldSize ; x++) //Loop through the MapWidth of the map
@@ -79,52 +83,18 @@ public class ExpGenScripts: MonoBehaviour{
             {
                 if(map[x,y] == 1)
                 {
-                    Instantiate(pref, new Vector3(x , y ,0), Quaternion.identity);
+                    NightPool.Spawn(pref, new Vector3(x , y ,0), Quaternion.identity);
                     yield return null;
                 }
             }
         }
     }
 
-    /// <summary>
-    /// Same as the Render function but only removes tiles
-    /// </summary>
-    /// <param name="map">Map that we want to draw</param>
-    /// <param name="tilemap">Tilemap we want to draw onto</param>
-    public static void UpdateMap(int[,] map, Vector2[,] grid) 
-    {
-        for (int x = 0; x < map.GetUpperBound(0); x++)
-        {
-            for (int y = 0; y < map.GetUpperBound(1); y++)
-            {
-                //We are only going to update the map, rather than rendering again
-                //This is because it uses less resources to update tiles to null
-                //As opposed to re-drawing every single tile (and collision data)
-                if (map[x, y] == 0)
-                {
-                    Instantiate(null, new Vector3(x , y ,0), Quaternion.identity);
-                }
-            }
-        }
-    }
-    public static void RenderMapWithShift(int[,] map, GameObject[,] field, GameObject pref, Vector2Int offset)
-    {
-        for (int x = 0; x < field.GetUpperBound(0); x++)
-        {
-            for (int y = 0; y < field.GetUpperBound(1); y++)
-            {
-                if(map[x+offset.x,y+offset.y] == 1)
-                {
-                    field[x, y] = Instantiate(pref, new Vector3(x + offset.x, 0 ,y + offset.y), Quaternion.identity);
-                }
-            }
-        }
-
-    }
-
-    public static void despawn(GameObject[,] objects){
-        NightPool.GameObjectInstantiated.Clear();
-    }
     
 
+    public static void despawn(GameObject[,] objects){
+        for(int x = 0; x < objects.Length; x++)
+            for(int y = 0; y < objects.Length; y++)
+                NightPool.Despawn(objects[x,y]);
+    }
 }

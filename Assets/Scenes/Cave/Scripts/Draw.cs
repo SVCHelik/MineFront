@@ -1,30 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using NTC.MonoCache;
-using JetBrains.Annotations;
-public class Draw: MonoCache 
+public class Draw: MonoBehaviour
 {
+    
+    private GameObject[,] _objects;
+    float[,] map;
     // Start is called before the first frame update
-    [Tooltip("ширина и длина")]
+    [Tooltip("Ширина карты высот, ширина игрового поля")]
     public int mapWidth;
+    [Tooltip("Ширина игрового поля")]
     public int fieldWidth;
-    [Tooltip("объекты которые будут спавниться")]
-    public GameObject pref1;
-    public GameObject pref2;
-    [Tooltip("это надо для некоторых перлинов")]
-    public float modifier;
-    public GameObject[,] objects;
-    int[,] map;
-    float seed;
+    [Tooltip("Префаб куба")]
+    public GameObject pref;
+    public GameObject quad;
+    Vector2Int shift = new Vector2Int(0, 0);
+
+    [Tooltip("Какие-то сложные параметры для генерации шума")]
+    
+    [SerializeField]
+    private int seed;
+    [Tooltip("Модификатор шума")]
+    [SerializeField]
+    private float modifier;
+    [Tooltip("Ширина шума")]
+    [SerializeField]
+    private int width;
+    [Tooltip("Масштаб шума")]
+    [SerializeField]
+    private float scale;
+    [Tooltip("Количество октав шума")]
+    [SerializeField]
+    private int octaves;
+    [Tooltip("Сохранение шума")]
+    [SerializeField]
+    private float persistence;
+    [Tooltip("Скорость изменения частоты в разных октавах")]
+    [SerializeField]
+    private float lacunarity;
+
+
     void OnGUI()
     {
         
         if (GUILayout.Button("next"))
         {
-            ExpGenScripts.RenderMapWithShift(map, objects, pref1, new Vector2Int(0, 10));
+            shift.x += fieldWidth;
         }
-        if (GUILayout.Button("re-generate"))
+        if (GUILayout.Button("generate"))
         {
             ReGen();
         }
@@ -32,26 +53,20 @@ public class Draw: MonoCache
     void Start()
     {
         seed = System.DateTime.Now.Millisecond;
-        //это просто надо
-        map = MapFunctions.GenerateArray(mapWidth, mapWidth, false);
-        //тут функция генерирующая карту, берем из MapFunctions
-        map = MapFunctions.RandomWalkCave(map, seed,  (int)modifier);
-        //тут рендер он из ExpGenScripts потому что в ориге сделано через tilemap
-        objects = ExpGenScripts.RenderMap(map, fieldWidth, pref1, pref2);
-        //ExpGenScripts.RenderMapWithShift(map, objects, pref1, new Vector2Int(10, 10));
+        map = NewGenScripts.GenerateNoiseMap(mapWidth, seed, scale, octaves, persistence, lacunarity, shift);
+        RenderScripts ren = new RenderScripts();
+        ren.RenderMap(map, fieldWidth, pref, shift);
+        quad = GameObject.Find("Quad");
+        quad.GetComponent<Renderer>().material.SetTexture("hello", TextureGen.GetTexture(mapWidth, map, null));
+        
     }
     void ReGen()
     {
-        ExpGenScripts.despawn(objects);
-        
         seed = System.DateTime.Now.Millisecond;
-        //это просто надо
-        map = MapFunctions.GenerateArray(mapWidth, mapWidth, false);
-        //тут функция генерирующая карту, берем из MapFunctions
-        map = MapFunctions.RandomWalkCave(map, seed,  (int)modifier);
-        //тут рендер он из ExpGenScripts потому что в ориге сделано через tilemap
-        objects = ExpGenScripts.RenderMap(map, fieldWidth, pref1, pref2);
-        //ExpGenScripts.RenderMapWithShift(map, objects, pref1, new Vector2Int(10, 10));
+        //улучшенная функция шума
+        map = NewGenScripts.GenerateNoiseMap(mapWidth, seed, scale, octaves, persistence, lacunarity, shift);
+        //отрисовка
+        TextureGen.GetTexture(mapWidth, map, GameObject.Find("quad"));
     }
 
     // Update is called once per frame
@@ -59,3 +74,4 @@ public class Draw: MonoCache
     {
     }
 }
+

@@ -13,23 +13,13 @@ MonoBehaviour:
   m_Name: Pools Preset
   m_EditorClassIdentifier: 
   _poolPresets:
-  - _name: Blue
+  - _name: White
     _enabled: 1
-    _prefab: {fileID: 1829008179722394044, guid: 72cc5e07684bb7f4bb66362d4d5efe83, type: 3}
-    _behaviourOnCapacityReached: 3
+    _prefab: {fileID: 3096157166303967127, guid: 15abdc95520fbdd47aae8675ba8f10a9, type: 3}
+    _behaviourOnCapacityReached: 1
     _despawnType: 2
     _callbacksType: 0
-    _capacity: 1000
-    _preloadSize: 1000
-    _dontDestroyOnLoad: 0
-    _warnings: 0
-  - _name: Black
-    _enabled: 1
-    _prefab: {fileID: 4012557022066630549, guid: 0dde042b63df2b94d8d79fe5c613fd6d, type: 3}
-    _behaviourOnCapacityReached: 3
-    _despawnType: 2
-    _callbacksType: 0
-    _capacity: 1000
-    _preloadSize: 1000
+    _capacity: 100000
+    _preloadSize: 100000
     _dontDestroyOnLoad: 0
     _warnings: 0
