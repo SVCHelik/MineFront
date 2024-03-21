@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using NTC.Pool;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -13,28 +14,32 @@ using UnityEngine.Tilemaps;
 /// Custom Procedural Rooms which is experimental
 /// </summary>
 public class ExpGenScripts: MonoBehaviour{
-
+    
     /// <summary>
     /// Draws the map to the screen
     /// </summary>
     /// <param name="map">Map that we want to draw</param>
     /// <param name="tilemap">Tilemap we will draw onto</param>
     /// <param name="tile">Tile we will draw with</param>
-    public static void RenderMap(int[,] map, GameObject pref1, GameObject pref2)
+    public static GameObject[,] RenderMap(int[,] map, int fieldSize, GameObject pref1, GameObject pref2)
     {
-         //Clear the map (ensures we dont overlap)
+        int MapWidth = map.GetUpperBound(0);
       
-        for (int x = 0; x < map.GetUpperBound(0) ; x++) //Loop through the width of the map
+        Vector2 offset = new Vector2(MapWidth/2 - fieldSize/2, MapWidth/2 - fieldSize/2);
+       
+        GameObject[,] field = new GameObject[fieldSize, fieldSize];
+
+        for (int x = 0; x < fieldSize ; x++) //Loop through the MapWidth of the map
         {
-        
-            for (int y = 0; y < map.GetUpperBound(1); y++) //Loop through the height of the map
+            for (int y = 0; y < fieldSize; y++) //Loop through the height of the map
             {
-            
-                if (map[x, y] == 1) // 1 = tile, 0 = no tile
-                     Instantiate(pref1, new Vector3(x, 0, y), Quaternion.identity);
-                else Instantiate(pref2, new Vector3(x, 0, y), Quaternion.identity);
+                if (map[(int)offset.x+x, (int)offset.y+y] == 1) // 1 = tile, 0 = no tile
+                    field[x, y] = NightPool.Spawn(pref1, new Vector3(x, 0, y), Quaternion.identity);
+                else 
+                    field[x, y] = NightPool.Spawn(pref2, new Vector3(x, 0, y), Quaternion.identity);
             }
         }
+        return field;
     }
 
     /// <summary>
@@ -44,15 +49,16 @@ public class ExpGenScripts: MonoBehaviour{
     /// <param name="tilemap">The tilemap to draw on</param>
     /// <param name="tile">The tile to draw with</param>
     /// <param name="offset">The offset to apply</param>
-    public static void RenderMapWithOffset(int[,] map, Vector2[,] grid, GameObject pref, Vector2Int offset)
+    public static void RenderMapWithOffset(int[,] map, GameObject pref, Vector2Int offset)
     {
+        
         for (int x = 0; x < map.GetUpperBound(0); x++)
         {
             for (int y = 0; y < map.GetUpperBound(1); y++)
             {
                 if(map[x,y] == 1)
                 {
-                    Instantiate(pref, new Vector3(x + offset.x, y + offset.y ,0), Quaternion.identity);
+                    NightPool.Spawn(pref, new Vector3(x + offset.x, y + offset.y ,0), Quaternion.identity);
                 }
             }
         }
@@ -101,5 +107,24 @@ public class ExpGenScripts: MonoBehaviour{
             }
         }
     }
+    public static void RenderMapWithShift(int[,] map, GameObject[,] field, GameObject pref, Vector2Int offset)
+    {
+        for (int x = 0; x < field.GetUpperBound(0); x++)
+        {
+            for (int y = 0; y < field.GetUpperBound(1); y++)
+            {
+                if(map[x+offset.x,y+offset.y] == 1)
+                {
+                    field[x, y] = Instantiate(pref, new Vector3(x + offset.x, 0 ,y + offset.y), Quaternion.identity);
+                }
+            }
+        }
+
+    }
+
+    public static void despawn(GameObject[,] objects){
+        NightPool.GameObjectInstantiated.Clear();
+    }
+    
 
 }

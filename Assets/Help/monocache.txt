@@ -1,0 +1,29 @@
+using NTC.MonoCache;
+
+public class Demo : MonoCache
+{
+    protected override void OnEnabled()
+    {
+        // Replaces base "OnEnable()" method.
+    }
+
+    protected override void OnDisabled()
+    {
+        // Replaces base "OnDisable()" method.
+    }
+
+    protected override void Run()
+    {
+        // Replaces base "Update()" method.
+    }
+
+    protected override void FixedRun()
+    {
+        // Replaces base "FixedUpdate()" method.
+    }
+
+    protected override void LateRun()
+    {
+        // Replaces base "LateUpdate()" method.
+    }
+}

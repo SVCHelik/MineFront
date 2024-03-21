@@ -5,7 +5,7 @@ public class BeeController : MonoBehaviour {
     [SerializeField]private GameObject _playerObject;
     [SerializeField]private GameObject stone;
     [SerializeField] private Rigidbody rig; 
-    bool exploded = false;
+    //bool exploded = false;
 
     public Transform centerObject; // Объект, вокруг которого будет полет
 
@@ -61,7 +61,7 @@ public class BeeController : MonoBehaviour {
 
     public void explode(float force, Vector3 pos, float radius, float mode){
         rig.AddExplosionForce(force, pos, radius, mode);
-        exploded = true;
+        //exploded = true;
     }
     
     private void OnEnable() {

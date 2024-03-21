@@ -1,5 +1,26 @@
 {
   "dependencies": {
+    "com.nickkhalow.util.eventvalue": {
+      "version": "https://github.com/NickKhalow/EventValue.git?path=/Packages/EasyTools",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e0a5081970c670f83af4512810d33e62739de68e"
+    },
+    "com.nighttraincode.monocache": {
+      "version": "https://github.com/MeeXaSiK/MonoCache.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c49640106104fcdda88a1b06b7035c1669a99dcc"
+    },
+    "com.nighttraincode.nightpool": {
+      "version": "https://github.com/MeeXaSiK/NightPool.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "fb0218774b66a8e3d99505c5eefda3ff8b41ba2d"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.0",
       "depth": 1,
