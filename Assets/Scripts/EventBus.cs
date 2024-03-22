@@ -12,14 +12,14 @@ public class EventBus
     public static Action<float, Vector3, float, float > Exploded;
     public static Action<float, float, float> ExplodeAsked;
     
-
+    public static Action removed;
 
 
 
 
     public EventBus()
     {
-        if (_instance != null) throw new System.Exception("Another bus exists");
+        if (_instance != null) throw new Exception("Another bus exists");
         _instance = this;
     }
 

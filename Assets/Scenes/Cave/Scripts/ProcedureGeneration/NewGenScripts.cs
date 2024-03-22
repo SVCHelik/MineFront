@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class NewGenScripts{
@@ -72,7 +73,7 @@ public class NewGenScripts{
 
                 // Сохраняем точку для карты высот
                 // Из-за наложения октав есть вероятность выхода за границы диапазона [0,1]
-                map[y, x] = Mathf.Clamp01(noiseHeight);
+                map[y, x] = math.floor(Mathf.Clamp01(noiseHeight)*10);
             }
         }
 
