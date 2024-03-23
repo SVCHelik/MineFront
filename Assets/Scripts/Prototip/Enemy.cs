@@ -33,6 +33,6 @@ public class Enemy : MonoBehaviour
     }
     public void Hit(){
         Debug.Log("умер");
-        NightPool.Despawn(transform.gameObject);
+        Destroy(transform.gameObject);
     }
 }

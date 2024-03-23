@@ -8,9 +8,13 @@ public class Reycast : MonoBehaviour
     public float timeSpawn = 2f;
     private float timer;
     private bool CanFier = false;
+    float BulletSpeed = 10f;
 
     public GameObject target;
     private Enemy EnemyScript;
+    public GameObject BulletPrefab;
+    public Transform BulletShutPoint;
+    public GameObject BulletObj;
 
     private void Start()
     {
@@ -19,7 +23,7 @@ public class Reycast : MonoBehaviour
 
     void Update(){
         target = Functions.FindNearObject("Enemy", transform.position);
-        EnemyScript = target.GetComponent<Enemy>();
+        
     // Update is called once per frame
     //сюда запишется инфо о пересечении луча, если оно будет
         RaycastHit hit;
@@ -31,27 +35,34 @@ public class Reycast : MonoBehaviour
         Physics.Raycast(ray, out hit);
 
         timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-            if (CanFier){
-                timer = timeSpawn;
-                EnemyScript.Hit();
-            }
-            
-            
-        }
+        
         //если луч с чем-то пересёкся, то..
         //если луч не попал в цель
         if (hit.collider != null){
             if (hit.collider.GetComponent<Collider>().name == target.GetComponent<Collider>().name) {
                 //Debug.Log("Виден");
                 CanFier = true;
+                EnemyScript = target.GetComponent<Enemy>();
             }
             else {
                 CanFier = false;
                 Debug.Log("Путь к врагу преграждает объект: "+hit.collider.name);
             }
             Debug.DrawLine(ray.origin, hit.point,Color.red);
+            if (timer <= 0)
+            {
+                if (CanFier){
+                    timer = timeSpawn;
+                    EnemyScript.Hit();
+                    //BulletObj = Instantiate(BulletPrefab, (BulletShutPoint.position + target.transform.position)/2, transform.rotation);
+                    //BulletObj.transform.localScale = new Vector3(0.2f, 0.2f, Vector3.Distance(BulletShutPoint.position, target.transform.position));
+                    //BulletObj.GetComponent<Bullet>().Target = target.transform.position;
+                    BulletObj = Instantiate(BulletPrefab, BulletShutPoint.position, transform.rotation);
+                    BulletObj.GetComponent<Bullet>().LiveTime = Vector3.Distance(BulletShutPoint.position, target.transform.position)/BulletSpeed/10;
+                }
+                
+                
+            }
         }
         }
 }

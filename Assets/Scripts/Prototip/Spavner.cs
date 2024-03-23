@@ -27,7 +27,7 @@ public class Spavner : MonoBehaviour
             {
                 position = new Vector3(Random.Range(-10.0f, 10.0f), 0f, Random.Range(-10.0f, 10.0f));
                 position.Normalize();
-                NightPool.Spawn(enemyPrefab, position * distance + new Vector3(0,1,0), Quaternion.identity, transform);
+                Instantiate(enemyPrefab, position * distance + new Vector3(0,1,0), Quaternion.identity, transform);
             }
         }
     }
