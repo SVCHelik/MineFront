@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEditor.Timeline;
 using UnityEngine;
+
 public class Draw: MonoBehaviour
 {
+    ScriptableObject parametrs;
     RenderScripts ren;
     private GameObject[,] _objects;
     float[,] map;

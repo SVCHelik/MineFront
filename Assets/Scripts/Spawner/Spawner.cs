@@ -1,7 +1,5 @@
 using UnityEngine;
-using System.Linq;
-using System;
-using UnityEngine.UIElements;
+using NTC.Pool;
 public class Spawner : MonoBehaviour
 {
     float radius;
@@ -22,10 +20,9 @@ public class Spawner : MonoBehaviour
 
     }
     public void spawn(GameObject enemyPrefab){
-        radius = GetComponent<SphereCollider>().radius*transform.lossyScale.x;
         Vector3 spawnpoint = UnityEngine.Random.insideUnitSphere*radius + transform.position;
         spawnpoint.y = transform.position.y;
-        Instantiate(enemyPrefab, spawnpoint, Quaternion.identity);
+        NightPool.Spawn(enemyPrefab, spawnpoint, Quaternion.identity);
     }
     
 

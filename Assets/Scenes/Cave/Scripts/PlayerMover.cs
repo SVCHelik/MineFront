@@ -1,9 +1,10 @@
 using UnityEngine;
+using NTC.MonoCache;
 
 //эти строчки гарантирют что наш скрипт не завалится если на плеере будет отсутствовать нужные компоненты
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class PlayerMover: MonoBehaviour
+public class PlayerMover: MonoCache
 {
     public float Speed = 0.3f;
     public float JumpForce = 1f;
@@ -44,7 +45,7 @@ public class PlayerMover: MonoBehaviour
         }
     }
 
-    void Start()
+    protected override void Run()
     {
         _rb = GetComponent<Rigidbody>();
         _collider = GetComponent<CapsuleCollider>();
@@ -58,7 +59,7 @@ public class PlayerMover: MonoBehaviour
             Debug.LogError("Player SortingLayer must be different from Ground SourtingLayer!");
     }
 
-    void FixedUpdate()
+    protected override void FixedRun()
     {
         JumpLogic();
         MoveLogic();

@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using NTC.Pool;
 public class Enemy : MonoBehaviour
 {
     public GameObject player1;
@@ -10,9 +8,6 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 5f;
     private CharacterController EnemyController;
     private Vector2 movement;
-
-    [SerializeField] private Functions Functions;
-
     
 
     // Start is called before the first frame update
@@ -38,6 +33,6 @@ public class Enemy : MonoBehaviour
     }
     public void Hit(){
         Debug.Log("умер");
-        Destroy(transform.gameObject);
+        NightPool.Despawn(transform.gameObject);
     }
 }

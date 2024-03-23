@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using NTC.Pool;
 using UnityEngine;
 
 public class Spavner : MonoBehaviour
@@ -28,7 +27,7 @@ public class Spavner : MonoBehaviour
             {
                 position = new Vector3(Random.Range(-10.0f, 10.0f), 0f, Random.Range(-10.0f, 10.0f));
                 position.Normalize();
-                Instantiate(enemyPrefab, position * distance + new Vector3(0,1,0), Quaternion.identity, transform);
+                NightPool.Spawn(enemyPrefab, position * distance + new Vector3(0,1,0), Quaternion.identity, transform);
             }
         }
     }

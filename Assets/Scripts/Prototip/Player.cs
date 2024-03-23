@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class Player : MonoBehaviour
+using UnityEngine;
+using NTC.MonoCache;
+
+public class Player : MonoCache
 { 
     [SerializeField] private float _speedWalk;
     [SerializeField] private float _speedRun;
     [SerializeField] private float player_nomber;
-    [SerializeField] private Functions Functions;
-
     private CharacterController _characterController;
     private Vector3 _walkDirection;
     private Vector3 _velocity;
     private float _speed;
     public CamField_moove _CamF;
 
-    private void Start()
+    protected override void Run()
     {
         _speed = _speedWalk;
         _characterController = GetComponent<CharacterController>();
@@ -23,7 +21,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Run(Input.GetKey(KeyCode.LeftShift));
+        PlayerRun(Input.GetKey(KeyCode.LeftShift));
         float x;
         float z;
         if (player_nomber == 1){
@@ -48,7 +46,7 @@ public class Player : MonoBehaviour
 
     }
  
-    private void FixedUpdate()
+    protected override void FixedRun()
     {
         Walk(_walkDirection);
     }
@@ -65,7 +63,7 @@ public class Player : MonoBehaviour
 
 
 
-    private void Run(bool canRun)
+    private void PlayerRun(bool canRun)
     {
         _speedWalk = canRun ? _speedRun : _speed;
     }

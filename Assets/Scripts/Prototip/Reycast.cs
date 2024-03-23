@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Reycast : MonoBehaviour
 {
-    [SerializeField] private Functions Functions;
 
     public float timeSpawn = 2f;
     private float timer;
