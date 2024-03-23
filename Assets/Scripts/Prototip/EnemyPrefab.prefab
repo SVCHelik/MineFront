@@ -183,7 +183,7 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   players: []
-  moveSpeed: 2.07
+  moveSpeed: 5
 --- !u!65 &8403504727983851591
 BoxCollider:
   m_ObjectHideFlags: 0

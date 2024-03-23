@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float LiveTime;
     private float timer;
-    public float BulletSpeed = 10f;
+    public float BulletSpeed;
 
     // Start is called before the first frame update
     void Start()

@@ -8,7 +8,7 @@ public class Reycast : MonoBehaviour
     public float timeSpawn = 2f;
     private float timer;
     private bool CanFier = false;
-    float BulletSpeed = 10f;
+    public float BulletSpeed = 100f;
 
     public GameObject target;
     private Enemy EnemyScript;
@@ -58,7 +58,8 @@ public class Reycast : MonoBehaviour
                     //BulletObj.transform.localScale = new Vector3(0.2f, 0.2f, Vector3.Distance(BulletShutPoint.position, target.transform.position));
                     //BulletObj.GetComponent<Bullet>().Target = target.transform.position;
                     BulletObj = Instantiate(BulletPrefab, BulletShutPoint.position, transform.rotation);
-                    BulletObj.GetComponent<Bullet>().LiveTime = Vector3.Distance(BulletShutPoint.position, target.transform.position)/BulletSpeed/10;
+                    BulletObj.GetComponent<Bullet>().LiveTime = Vector3.Distance(BulletShutPoint.position, target.transform.position)/BulletSpeed;
+                    BulletObj.GetComponent<Bullet>().BulletSpeed = BulletSpeed;
                 }
                 
                 
