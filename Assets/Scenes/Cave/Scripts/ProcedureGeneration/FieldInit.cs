@@ -8,9 +8,9 @@ public class FieldInit : MonoBehaviour {
     
     void Start()
     {
-        FieldChankInit();
+        FieldChunkInit();
     }
-    public GameObject[,] FieldChankInit(){
+    public GameObject[,] FieldChunkInit(){
         _objects = new GameObject[mapWidth, mapWidth];
         for(int x = 0; x < mapWidth; x+=fieldWidth){
             for(int y = 0; y < mapWidth; y+=fieldWidth){

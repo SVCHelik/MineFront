@@ -534,15 +534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2fd81a65c8b244eb73650a14b11255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _index: 0
-  _globalUpdate: {fileID: 0}
-  _isSetup: 0
-  Speed: 0.06
-  JumpForce: 1
-  GroundLayer:
-    m_Bits: 1
-  _rb: {fileID: 0}
-  _collider: {fileID: 0}
 --- !u!136 &1054982390
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -815,21 +806,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717086810}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68298cccad7fe6c48a87014d667681db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 1000
-  fieldWidth: 100
-  preFub: {fileID: 3096157166303967127, guid: 15abdc95520fbdd47aae8675ba8f10a9, type: 3}
-  seed: 0
-  modifier: 0.08
-  width: 100
-  scale: 0.78
-  octaves: 4
-  persistence: 0.66
-  lacunarity: 0.35
+  settings: {fileID: 11400000, guid: 00e32059af881954cb869316f42c9546, type: 2}
 --- !u!114 &1717086813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,5 +873,5 @@ SceneRoots:
   - {fileID: 1588285133}
   - {fileID: 1717086811}
   - {fileID: 251235341}
-  - {fileID: 1403985033}
   - {fileID: 1621954979}
+  - {fileID: 1403985033}

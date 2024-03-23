@@ -1,55 +1,48 @@
+using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Draw: MonoBehaviour
 {
-    ScriptableObject parametrs;
-    RenderScripts ren;
-    private GameObject[,] _objects;
     float[,] map;
     GameObject[,] field;
     // Start is called before the first frame update
-    [Tooltip("Ширина карты высот, ширина игрового поля")]
-    public int mapWidth;
-    [Tooltip("Ширина игрового поля")]
-    public int fieldWidth;
-    [Tooltip("Префаб куба")]
-    public GameObject preFub;
     Vector2Int shift = new Vector2Int(0, 0);
 
-    [Tooltip("Какие-то сложные параметры для генерации шума")]
-    
-    [SerializeField]
-    private int seed;
-    [Tooltip("Модификатор шума")]
-    [SerializeField]
-    private float modifier;
-    [Tooltip("Ширина шума")]
-    [SerializeField]
-    private int width;
-    [Tooltip("Масштаб шума")]
-    [SerializeField]
-    private float scale;
-    [Tooltip("Количество октав шума")]
-    [SerializeField]
-    private int octaves;
-    [Tooltip("Сохранение шума")]
-    [SerializeField]
-    private float persistence;
-    [Tooltip("Скорость изменения частоты в разных октавах")]
-    [SerializeField]
-    private float lacunarity;
-
+    private GameObject[,] _objects;
     GameObject spriteObject;
     Sprite sprite;
     SpriteRenderer spriteRenderer;
+    public ProcGenData settings;
+    RenderScripts ren;
+    public void MapInit(){
+		int seed;
+		if (settings.isRandom)
+		{
+			seed = DateTime.Now.Millisecond;
+		}
+		else
+		{
+			seed = settings.seed;
+		}
+
+		switch (settings.type)
+		{
+			case mapType.mainMap:
+                map = NewGenScripts.GenerateNoiseMap(settings, seed);
+                break;
+        }
+
+    }
     void OnGUI()
     {
         
         if (GUILayout.Button("next"))
         {
-            RendNext();
+            //RendNext();
         }
         if (GUILayout.Button("ReGenMapSprite"))
         {
@@ -58,12 +51,11 @@ public class Draw: MonoBehaviour
     }
     void Start()
     {
-        seed = System.DateTime.Now.Millisecond;
-        map = NewGenScripts.GenerateNoiseMap(mapWidth, seed, scale, octaves, persistence, lacunarity, shift);
+        MapInit();
         ren = new RenderScripts();
-        ren.RenderMap(map,field, fieldWidth, preFub, shift);
+        ren.RenderMap(map,field, settings.fieldWidth, settings.preFub, shift);
 
-        sprite = Sprite.Create(TextureGen.GetTexture(width, map), new Rect(0, 0, width, width), UnityEngine.Vector2.one * 0.5f);
+        sprite = Sprite.Create(TextureGen.GetTexture(map.GetUpperBound(0), map), new Rect(0, 0, map.GetUpperBound(0), map.GetUpperBound(0)), UnityEngine.Vector2.one * 0.5f);
         spriteObject = new GameObject("MapSprite");
         spriteRenderer = spriteObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
@@ -72,23 +64,25 @@ public class Draw: MonoBehaviour
         spriteObject.transform.localPosition = new Vector3(1.52f, 0.58f, 2f); // Размещаем спрайт перед камерой на расстоянии 2 метра
         spriteObject.transform.localRotation = Quaternion.identity; // Выравниваем спрайт так, чтобы он был направлен прямо перед камерой
     }
+    public void gensprite(){
+        sprite = Sprite.Create(TextureGen.GetTexture(map.GetUpperBound(0), map), new Rect(0, 0, map.GetUpperBound(0), map.GetUpperBound(0)), UnityEngine.Vector2.one * 0.5f);
+        spriteRenderer.sprite = sprite;
+    }
     void ReGenMap()//только для спрайта(пока)
     {
-        seed = System.DateTime.Now.Millisecond;
-        map = NewGenScripts.GenerateNoiseMap(mapWidth, seed, scale, octaves, persistence, lacunarity, shift);
-        sprite = Sprite.Create(TextureGen.GetTexture(width, map), new Rect(0, 0, width, width), UnityEngine.Vector2.one * 0.5f);
-        spriteRenderer.sprite = sprite;
+        MapInit();
+        gensprite();
     }
 
     void Update()
     {
         //StartCoroutine("RendNext", 1);
     }
-    IEnumerator RendNext(){
-        shift.x = (shift.x+fieldWidth)%mapWidth;
-        shift.y = (shift.y+fieldWidth)%mapWidth;
-        ren.RenderMap(map,field, fieldWidth, preFub, shift);
-        return null;
-    }
+    // IEnumerator RendNext(){
+    //     shift.x = (shift.x+fieldWidth)%mapWidth;
+    //     shift.y = (shift.y+fieldWidth)%mapWidth;
+    //     ren.RenderMap(map,field, fieldWidth, preFub, shift);
+    //     return null;
+    // }
 }
 
