@@ -13,7 +13,7 @@ public class NewGenScripts{
     //   offset: The offset for noise generation.
     // Returns:
     //   A 2D array of Perlin noise values representing the generated noise map.
-    public static float[,] GenerateNoiseMap(int width, int seed, float scale, int octaves, float persistence, float lacunarity, Vector2 offset)
+    public static float[,] GenerateNoiseMap(int width, int seed, float scale, int octaves, float persistence, float lacunarity)
     {
         // Массив данных о вершинах, одномерный вид поможет избавиться от лишних циклов впоследствии
         float[,] map = new float[width, width];
@@ -26,8 +26,8 @@ public class NewGenScripts{
         for (int i = 0; i < octaves; i++)
         {
             // Учитываем внешний сдвиг положения
-            float xOffset = rand.Next(-100000, 100000) + offset.x;
-            float yOffset = rand.Next(-100000, 100000) + offset.y;
+            float xOffset = rand.Next(-100000, 100000);
+            float yOffset = rand.Next(-100000, 100000);
             octavesOffset[i] = new Vector2(xOffset / width, yOffset / width);
         }
 
@@ -78,5 +78,9 @@ public class NewGenScripts{
         }
 
         return map;
+    }
+    public static float[,] GenerateNoiseMap(ProcGenData settings, int seed)
+    {
+        return GenerateNoiseMap(settings.mapWidth, seed, settings.scale, settings.octaves, settings.persistence, settings.lacunarity);
     }
 }

@@ -1,11 +1,15 @@
 using UnityEngine;
 
-public enum Type
+public enum mapType
 {
         mainMap
 }
 [CreateAssetMenu(fileName = "ProcGenData", menuName = "Assets/scenes/cave/ProcGenData", order = 0)]
 public class ProcGenData : ScriptableObject {
+    
+    [Tooltip("Тип карты")]
+    public mapType type;
+    
     [Tooltip("Ширина карты высот, ширина игрового поля")]
     public int mapWidth;
     [Tooltip("Ширина игрового поля")]
@@ -15,24 +19,29 @@ public class ProcGenData : ScriptableObject {
    
     [Header("Какие-то сложные параметры для генерации шума")]
     
+    [Tooltip("рандомный сид шума")]
     [SerializeField]
-    private int seed;
+    public bool isRandom;
+
+    [Tooltip("сид шума")]
+    [SerializeField]
+    public int seed;
     [Tooltip("Модификатор шума")]
     [SerializeField]
-    private float modifier;
+    public float modifier;
     [Tooltip("Ширина шума")]
     [SerializeField]
-    private int width;
+    public int width;
     [Tooltip("Масштаб шума")]
     [SerializeField]
-    private float scale;
+    public float scale;
     [Tooltip("Количество октав шума")]
     [SerializeField]
-    private int octaves;
+    public int octaves;
     [Tooltip("Сохранение шума")]
     [SerializeField]
-    private float persistence;
+    public float persistence;
     [Tooltip("Скорость изменения частоты в разных октавах")]
     [SerializeField]
-    private float lacunarity;
+    public float lacunarity;
 }

@@ -163,7 +163,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 3.03
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -183,8 +183,7 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   players: []
-  moveSpeed: 9
-  Functions: {fileID: 2795438563793239976}
+  moveSpeed: 2.07
 --- !u!65 &8403504727983851591
 BoxCollider:
   m_ObjectHideFlags: 0
