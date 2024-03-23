@@ -534,11 +534,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2fd81a65c8b244eb73650a14b11255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _index: 0
+  _globalUpdate: {fileID: 0}
+  _isSetup: 0
   Speed: 0.06
   JumpForce: 1
   GroundLayer:
-    serializedVersion: 2
     m_Bits: 1
+  _rb: {fileID: 0}
+  _collider: {fileID: 0}
 --- !u!136 &1054982390
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -781,6 +785,7 @@ GameObject:
   - component: {fileID: 1717086812}
   - component: {fileID: 1717086813}
   - component: {fileID: 1717086814}
+  - component: {fileID: 1717086815}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -810,7 +815,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717086810}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68298cccad7fe6c48a87014d667681db, type: 3}
   m_Name: 
@@ -867,6 +872,18 @@ MonoBehaviour:
   mapWidth: 1000
   fieldWidth: 100
   _prefab: {fileID: 3096157166303967127, guid: 15abdc95520fbdd47aae8675ba8f10a9, type: 3}
+--- !u!114 &1717086815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717086810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2d72d2f7245ba47bf5e2fdda42f6fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

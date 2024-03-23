@@ -13,13 +13,13 @@ public class Player : MonoCache
     private float _speed;
     public CamField_moove _CamF;
 
-    protected override void Run()
+    void Start()
     {
         _speed = _speedWalk;
         _characterController = GetComponent<CharacterController>();
     }
     // Update is called once per frame
-    private void Update()
+    protected override void Run()
     {
         PlayerRun(Input.GetKey(KeyCode.LeftShift));
         float x;
