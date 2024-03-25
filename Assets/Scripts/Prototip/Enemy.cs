@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 5f;
     private CharacterController EnemyController;
     private Vector2 movement;
+    public float Xp = 100;
     
 
     // Start is called before the first frame update
@@ -27,12 +28,24 @@ public class Enemy : MonoBehaviour
         if (Functions.FindNearObject("Player", transform.position)){
             transform.LookAt(Functions.FindNearObject("Player", transform.position).transform);
         }
+        if (Xp<=0){
+            Destroy(transform.gameObject);
+        }
     }
     private void FixedUpdate() {
         EnemyController.Move(transform.forward * moveSpeed * Time.deltaTime);
     }
     public void Hit(){
-        Debug.Log("умер");
-        Destroy(transform.gameObject);
+        Debug.Log(Xp);
+        Xp -=10;
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "DamageZone")
+        {
+            Xp -=1;
+        }
     }
 }
