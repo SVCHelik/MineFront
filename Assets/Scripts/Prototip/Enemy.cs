@@ -11,15 +11,13 @@ public class Enemy : MonoBehaviour
     public float Xp = 100;
     
 
-    // Start is called before the first frame update
     void Start(){
     EnemyController = GetComponent<CharacterController>();
     players = GameObject.FindGameObjectsWithTag("Player");
     player1 = players[0];
     player2 = players[1];
     }
-//
-    // Update is called once per frame
+
     void Update(){
         Vector3 direction1 = player1.transform.position - transform.position;
         Vector3 direction2 = player2.transform.position - transform.position;
@@ -31,6 +29,7 @@ public class Enemy : MonoBehaviour
         if (Xp<=0){
             Destroy(transform.gameObject);
         }
+        //if (transform.position.y < 1f || transform.position.y > 1.1f) transform.position = new Vector3(transform.position.x, 1.01f, transform.position.z);// не дает проваливаться под землю, но приколы при контакте
     }
     private void FixedUpdate() {
         EnemyController.Move(transform.forward * moveSpeed * Time.deltaTime);
@@ -45,7 +44,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "DamageZone")
         {
-            Xp -=1;
+            Xp -=10;
         }
     }
 }
