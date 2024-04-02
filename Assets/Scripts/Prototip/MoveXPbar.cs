@@ -13,6 +13,6 @@ public class MoveXPbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles = new Vector3(-1,0,0);   
+          
     }
 }

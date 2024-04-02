@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4892983420545627442}
   - component: {fileID: 7497279328063634957}
   - component: {fileID: 7093485759602962478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1344583690262039540}
   - component: {fileID: 157368868843079834}
   - component: {fileID: 4089892927041618204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Xp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 3217115498237387435}
   - component: {fileID: 8403504727983851591}
   - component: {fileID: 2795438563793239976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyPrefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ CharacterController:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 7
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -387,7 +387,7 @@ BoxCollider:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 7
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 2983515986311553345}
   - component: {fileID: 8629190212976936242}
   - component: {fileID: 7649708640344693719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 560317352211398634}
   - component: {fileID: 420594121706065969}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: XpObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}

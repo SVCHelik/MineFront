@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - DamageZone
+  - Turret
   layers:
   - Default
   - TransparentFX
@@ -13,10 +14,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - stone
+  - Enamy
+  - Players
+  - triggers
   - 
   - 
   - 
