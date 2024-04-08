@@ -25,5 +25,23 @@ public class Spawner : MonoBehaviour
         NightPool.Spawn(enemyPrefab, spawnpoint, Quaternion.identity);
     }
     
+    public void OnCollisionEnter(Collision other) {
+        if (other.gameObject.tag == "Terrain"){
+            EventBus.SpawnAsked -= spawn;
+            Debug.Log(
+                "Stop"
+            );
+        }
+    }
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag == "Terrain"){
+            EventBus.SpawnAsked += spawn;
+            Debug.Log(
+                "Spawning"
+            );
+
+        }
+    }
 
 }

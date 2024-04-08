@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: -4690651515968375293}
   - component: {fileID: 5371290148745046650}
   m_Layer: 0
-  m_Name: BeeStone(Clone)
+  m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

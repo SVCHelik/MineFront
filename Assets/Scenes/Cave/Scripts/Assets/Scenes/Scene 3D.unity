@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 509230447}
   m_Layer: 0
   m_Name: Map Generator
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 631091597}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -695,7 +695,7 @@ GameObject:
   - component: {fileID: 663968340}
   m_Layer: 0
   m_Name: Cave Mesh
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -840,7 +840,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 765448426}
-  - component: {fileID: 765448427}
   m_Layer: 0
   m_Name: Rig
   m_TagString: Untagged
@@ -865,33 +864,6 @@ Transform:
   - {fileID: 1491898308}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 31.945, z: 0}
---- !u!114 &765448427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765448425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5dac5a9786b4db18d8ad4187d7245d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _updateType: 0
-  preloadPoolsType: 0
-  poolsPreset: {fileID: 0}
-  _behaviourOnCapacityReached: 2
-  _despawnType: 2
-  _callbacksType: 1
-  _capacity: 64
-  _dontDestroyOnLoad: 0
-  _sendWarnings: 1
-  _nightPoolMode: 0
-  _reactionOnRepeatedDelayedDespawn: 1
-  _despawnPersistentClonesOnDestroy: 1
-  _checkClonesForNull: 1
-  _checkForPrefab: 1
-  _clearEventsOnDestroy: 0
 --- !u!1 &777526921
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,7 +878,7 @@ GameObject:
   - component: {fileID: 777526925}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1333,6 +1305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1326545482}
   - component: {fileID: 1326545483}
+  - component: {fileID: 1326545484}
   m_Layer: 0
   m_Name: Spawn Controller
   m_TagString: Untagged
@@ -1374,7 +1347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2937838657116118551, guid: ab0a3e92673455a45a33bf549e81b0f6, type: 3}
-  maxEnemies: 10
+  maxEnemies: 100
   timeBetweenSpawns: 1
   spawnPoints:
   - {fileID: 588992960}
@@ -1387,6 +1360,33 @@ MonoBehaviour:
   - {fileID: 2937838657116118551, guid: ab0a3e92673455a45a33bf549e81b0f6, type: 3}
   timeAlive: 5
   i: 0
+--- !u!114 &1326545484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326545481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5dac5a9786b4db18d8ad4187d7245d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 0
+  preloadPoolsType: 1
+  poolsPreset: {fileID: 11400000, guid: d8762f37f5c36384488ce1f39b95f7d0, type: 2}
+  _behaviourOnCapacityReached: 2
+  _despawnType: 2
+  _callbacksType: 1
+  _capacity: 100
+  _dontDestroyOnLoad: 0
+  _sendWarnings: 1
+  _nightPoolMode: 1
+  _reactionOnRepeatedDelayedDespawn: 1
+  _despawnPersistentClonesOnDestroy: 1
+  _checkClonesForNull: 1
+  _checkForPrefab: 1
+  _clearEventsOnDestroy: 0
 --- !u!1 &1491898307
 GameObject:
   m_ObjectHideFlags: 0
