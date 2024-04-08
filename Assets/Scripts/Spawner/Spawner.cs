@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
 
     }
     public void spawn(GameObject enemyPrefab){
-        Vector3 spawnpoint = UnityEngine.Random.insideUnitSphere*radius + transform.position;
+        Vector3 spawnpoint = Random.insideUnitSphere*radius + transform.position;
         spawnpoint.y = transform.position.y;
         NightPool.Spawn(enemyPrefab, spawnpoint, Quaternion.identity);
     }

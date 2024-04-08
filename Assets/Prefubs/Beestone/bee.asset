@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1675ca1885e647e88c4e999d1164b08c, type: 3}
-  m_Name: Pool Preset
+  m_Name: bee
   m_EditorClassIdentifier: 
   _poolPresets:
   - _name: 
     _enabled: 1
-    _prefab: {fileID: 2937838657116118551, guid: 7e4c0bc000ee7294f86c9062dc7b1572, type: 3}
-    _behaviourOnCapacityReached: 1
-    _despawnType: 2
+    _prefab: {fileID: 3629577615031131107, guid: d0533e44bfa6812459e0022f22dfe364, type: 3}
+    _behaviourOnCapacityReached: 0
+    _despawnType: 0
     _callbacksType: 0
-    _capacity: 100
-    _preloadSize: 10
+    _capacity: 50
+    _preloadSize: 50
     _dontDestroyOnLoad: 0
     _warnings: 0

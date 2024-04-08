@@ -14,6 +14,7 @@ public class EventBus
     
     public static Action removed;
 
+    public static Action<Vector2> PlayerCameToPlane;
 
 
 

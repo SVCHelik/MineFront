@@ -31,7 +31,7 @@ public class SpawnController : MonoBehaviour
 
             if (GameObject.FindGameObjectsWithTag("Enemy").Length < maxEnemies){
                 i++;
-                EventBus.SpawnAsked?.Invoke(mobs[i % 6]);
+                EventBus.SpawnAsked?.Invoke(mobs[i % mobs.Length]);
             }
             
         }
