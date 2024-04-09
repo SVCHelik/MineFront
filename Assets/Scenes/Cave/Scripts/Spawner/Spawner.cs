@@ -22,25 +22,19 @@ public class Spawner : MonoBehaviour
     public void spawn(GameObject enemyPrefab){
         Vector3 spawnpoint = Random.insideUnitSphere*radius + transform.position;
         spawnpoint.y = transform.position.y;
+
         NightPool.Spawn(enemyPrefab, spawnpoint, Quaternion.identity);
     }
     
     public void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == "Terrain"){
             EventBus.SpawnAsked -= spawn;
-            Debug.Log(
-                "Stop"
-            );
         }
     }
     void OnCollisionExit(Collision other)
     {
         if (other.gameObject.tag == "Terrain"){
             EventBus.SpawnAsked += spawn;
-            Debug.Log(
-                "Spawning"
-            );
-
         }
     }
 

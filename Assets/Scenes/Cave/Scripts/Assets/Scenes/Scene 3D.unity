@@ -399,8 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1647bbaf26a4040d3bc6ffe5c06dd0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 128
-  height: 72
+  width: 250
+  height: 250
   seed: 0
   useRandomSeed: 1
   randomFillPercent: 45
@@ -605,7 +605,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4, z: 0}
-  m_LocalScale: {x: 15.025, y: 1, z: 7.875}
+  m_LocalScale: {x: 234.59825, y: 15.61386, z: 122.95915}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 509230443}
@@ -840,6 +840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 765448426}
+  - component: {fileID: 765448427}
   m_Layer: 0
   m_Name: Rig
   m_TagString: Untagged
@@ -864,6 +865,18 @@ Transform:
   - {fileID: 1491898308}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 31.945, z: 0}
+--- !u!114 &765448427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765448425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2d72d2f7245ba47bf5e2fdda42f6fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &777526921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,8 +1360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2937838657116118551, guid: ab0a3e92673455a45a33bf549e81b0f6, type: 3}
-  maxEnemies: 100
-  timeBetweenSpawns: 1
+  maxEnemies: 0
+  timeBetweenSpawns: 8.01
   spawnPoints:
   - {fileID: 588992960}
   - {fileID: 1998009360}
@@ -1358,6 +1371,7 @@ MonoBehaviour:
   - {fileID: 980430578}
   mobs:
   - {fileID: 2937838657116118551, guid: ab0a3e92673455a45a33bf549e81b0f6, type: 3}
+  - {fileID: 2937838657116118551, guid: 1ad29215bced6d04e88b5adea6bab7ea, type: 3}
   timeAlive: 5
   i: 0
 --- !u!114 &1326545484
@@ -1375,10 +1389,10 @@ MonoBehaviour:
   _updateType: 0
   preloadPoolsType: 1
   poolsPreset: {fileID: 11400000, guid: d8762f37f5c36384488ce1f39b95f7d0, type: 2}
-  _behaviourOnCapacityReached: 2
+  _behaviourOnCapacityReached: 0
   _despawnType: 2
   _callbacksType: 1
-  _capacity: 100
+  _capacity: 10
   _dontDestroyOnLoad: 0
   _sendWarnings: 1
   _nightPoolMode: 1

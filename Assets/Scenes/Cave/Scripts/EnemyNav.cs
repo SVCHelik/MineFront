@@ -1,20 +1,32 @@
 using UnityEngine;
 using NTC.Pool;
-public class EnemyNav : MonoBehaviour
+using NTC.MonoCache;
+public class EnemyNav : MonoCache, IPoolable
 {
+    public void OnDespawn()
+    {
+        
+    }
+
+    public void OnSpawn()
+    {
+       
+    }
+
     public GameObject[] players;
     public Transform target;
     public float moveSpeed = 5f;
     private Vector2 movement;
     public float Xp = 100;
-    
 
     void Start(){
-        players = GameObject.FindGameObjectsWithTag("Player");
+        players = GameObject.FindGameObjectsWithTag("Player");   
     }
 
-    void Update(){
-        // Vector3 direction1 = player1.transform.position - transform.position;
+    protected override void Run()
+    {
+        
+        // Vecto direction1 = player1.transform.position - transform.position;
         // Vector3 direction2 = player2.transform.position - transform.position;
         //Debug.Log(angle);
         //Debug.Log(direction);
@@ -33,7 +45,7 @@ public class EnemyNav : MonoBehaviour
         // }
         //if (transform.position.y < 1f || transform.position.y > 1.1f) transform.position = new Vector3(transform.position.x, 1.01f, transform.position.z);// не дает проваливаться под землю, но приколы при контакте
     }
-    private void FixedUpdate() {
+    protected override void FixedRun() {
         if ((transform.position - target.position).magnitude > 50)
             NightPool.Despawn(gameObject);
         if (target)
@@ -52,4 +64,5 @@ public class EnemyNav : MonoBehaviour
             NightPool.Despawn(gameObject);
         }
     }
+
 }
