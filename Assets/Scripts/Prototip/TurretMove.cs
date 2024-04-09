@@ -7,7 +7,7 @@ public class TurretMove : MonoBehaviour
     public GameObject Hosain;
     private CharacterController _characterController;
     public int flymod = 0;
-    private float _speedFly = 10;
+    private float _speedFly = 7;
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
