@@ -27,7 +27,8 @@ public class Enemy : MonoBehaviour
             transform.LookAt(Functions.FindNearObject("Player", transform.position).transform);
         }
         if (Xp<=0){
-            Destroy(transform.gameObject);
+            //Destroy(transform.gameObject);
+            NightPool.Despawn(gameObject);
         }
         //if (transform.position.y < 1f || transform.position.y > 1.1f) transform.position = new Vector3(transform.position.x, 1.01f, transform.position.z);// не дает проваливаться под землю, но приколы при контакте
     }
