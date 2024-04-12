@@ -58,7 +58,7 @@ public class Reycast : MonoBehaviour
             {
                 if (CanFier){
                     timer = timeSpawn;
-                    EnemyScript.Hit();
+                    EnemyScript.TakeHit();
                     BulletObj = Instantiate(BulletPrefab, BulletShutPoint.position, transform.rotation);
                     BulletObj.GetComponent<Bullet>().LiveTime = Vector3.Distance(BulletShutPoint.position, target.transform.position)/BulletSpeed;
                     BulletObj.GetComponent<Bullet>().BulletSpeed = BulletSpeed;

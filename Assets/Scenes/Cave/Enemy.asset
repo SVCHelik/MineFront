@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1675ca1885e647e88c4e999d1164b08c, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  _poolPresets: []
+  _poolPresets:
+  - _name: 
+    _enabled: 0
+    _prefab: {fileID: 0}
+    _behaviourOnCapacityReached: 0
+    _despawnType: 0
+    _callbacksType: 0
+    _capacity: 0
+    _preloadSize: 0
+    _dontDestroyOnLoad: 0
+    _warnings: 0

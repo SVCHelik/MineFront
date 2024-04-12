@@ -15,10 +15,6 @@ public class Spawner : MonoBehaviour
         radius = GetComponent<SphereCollider>().radius*transform.lossyScale.x;
     }
 
-    private void Update()
-    {
-
-    }
     public void spawn(GameObject enemyPrefab){
         Vector3 spawnpoint = Random.insideUnitSphere*radius + transform.position;
         spawnpoint.y = transform.position.y;
@@ -26,16 +22,18 @@ public class Spawner : MonoBehaviour
         NightPool.Spawn(enemyPrefab, spawnpoint, Quaternion.identity);
     }
     
-    public void OnCollisionEnter(Collision other) {
-        if (other.gameObject.tag == "Terrain"){
-            EventBus.SpawnAsked -= spawn;
-        }
-    }
-    void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.tag == "Terrain"){
-            EventBus.SpawnAsked += spawn;
-        }
-    }
+    // public void OnCollisionEnter(Collision other) {
+    //     if (other.gameObject.tag == "Terrain"){
+    //         EventBus.SpawnAsked -= spawn;
+    //     }
+    // }
+    // void OnCollisionExit(Collision other)
+    // {
+    //     if (other.gameObject.tag == "Terrain"){
+    //         EventBus.SpawnAsked += spawn;
+    //     }
+    // }
+
+    
 
 }

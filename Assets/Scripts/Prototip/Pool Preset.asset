@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Pool Preset
   m_EditorClassIdentifier: 
   _poolPresets:
-  - _name: 
+  - _name: SimpleMob
     _enabled: 1
     _prefab: {fileID: 2937838657116118551, guid: 7e4c0bc000ee7294f86c9062dc7b1572, type: 3}
-    _behaviourOnCapacityReached: 1
+    _behaviourOnCapacityReached: 4
     _despawnType: 2
-    _callbacksType: 0
+    _callbacksType: 1
     _capacity: 100
-    _preloadSize: 10
+    _preloadSize: 100
     _dontDestroyOnLoad: 0
     _warnings: 0

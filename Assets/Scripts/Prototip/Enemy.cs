@@ -1,31 +1,36 @@
 using UnityEngine;
 using NTC.Pool;
-using NTC.MonoCache;
-public class Enemy : MonoCache, IPoolable
+
+public class Enemy : MonoBehaviour, IPoolable
 {
     public GameObject[] players;
     public Transform target;
     public float moveSpeed = 5f;
     //private Vector2 movement;
     public float HP = 100;
+    public float maxHP = 100;
+    public Rigidbody rigidBody;
 
     public void OnDespawn()
     {
-        
+        // rigidBody.velocity = Vector3.zero;
+        // rigidBody.angularVelocity = Vector3.zero;
+        EventBus.MobDespawned?.Invoke(maxHP);
     }
 
     public void OnSpawn()
     {
-        HP = 100;
+        HP = maxHP;
+        EventBus.MobSpawned?.Invoke(HP);
     }
     void Start(){
-    //EnemyController = GetComponent<CharacterController>();
-    players = GameObject.FindGameObjectsWithTag("Player"); 
+        rigidBody = GetComponent<Rigidbody>();
+        players = GameObject.FindGameObjectsWithTag("Player"); 
     }
 
-    protected override void Run()
+    void Update()
     {
-
+        transform.LookAt(target);
         if(players.Length == 2)
             if ((transform.position - players[0].transform.position).magnitude <= (transform.position - players[1].transform.position).magnitude)
                 target = players[0].transform;
@@ -34,20 +39,17 @@ public class Enemy : MonoCache, IPoolable
         else if(players[0])
             target = players[0].transform;
         
-        transform.LookAt(target);
-        // if (HP<=0){
-        //     Destroy(transform.gameObject);
-        // }
-        //if (transform.position.y < 1f || transform.position.y > 1.1f) transform.position = new Vector3(transform.position.x, 1.01f, transform.position.z);// не дает проваливаться под землю, но приколы при контакте
+        
     }
-    protected override void FixedRun() {
+    private void FixedUpdate() 
+     {
         if ((transform.position - target.position).magnitude > 50)
             NightPool.Despawn(gameObject);
         if (target)
             transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
         
     }
-    public void Hit(){
+    public void TakeHit(){
         Debug.Log(HP);
         if(HP >= 10){
             HP -=10;
@@ -59,7 +61,7 @@ public class Enemy : MonoCache, IPoolable
     {
         if (other.gameObject.tag == "DamageZone")
         {
-            Hit();
+            TakeHit();
         }
     }
 }
