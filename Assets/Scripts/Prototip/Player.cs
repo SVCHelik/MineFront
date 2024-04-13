@@ -2,7 +2,7 @@
 using UnityEngine;
 using NTC.MonoCache;
 
-public class Player : MonoCache
+public class Player : MonoBehaviour
 { 
     [SerializeField] private float _speedWalk;
     [SerializeField] private float _speedRun;
@@ -19,7 +19,7 @@ public class Player : MonoCache
         _characterController = GetComponent<CharacterController>();
     }
     // Update is called once per frame
-    protected override void Run()
+    void Update()
     {
         PlayerRun(Input.GetKey(KeyCode.LeftShift));
         float x;
@@ -46,7 +46,7 @@ public class Player : MonoCache
 
     }
  
-    protected override void FixedRun()
+    void FixedUpdate()
     {
         Walk(_walkDirection);
     }
@@ -58,9 +58,6 @@ public class Player : MonoCache
         Vector3 fixdir = transform.InverseTransformDirection(direction);
         _characterController.Move(fixdir * _speedWalk * Time.fixedDeltaTime);
     }
-
-
-
 
 
     private void PlayerRun(bool canRun)

@@ -9,6 +9,7 @@ public class Reycast : MonoBehaviour
     private float timer;
     private bool CanFier = false;
     public float BulletSpeed = 100f;
+    public int NumerOfGun = 0;
 
     public GameObject target;
     private Enemy EnemyScript;
@@ -16,19 +17,24 @@ public class Reycast : MonoBehaviour
     public GameObject ShutPrefab;
     public Transform BulletShutPoint;
     public GameObject BulletObj;
+    int Trigger_layer_mask = 1 << 9;
     public GameObject ShutObj;
 
     private void Start()
     {
         timer = timeSpawn;
+        Trigger_layer_mask = ~Trigger_layer_mask;
+        Debug.Log(Trigger_layer_mask);
     }
 
     void Update(){
         target = Functions.FindNearObject("Enemy", transform.position);
         
         timer -= Time.deltaTime;
-        //AutomaticShot();
-        ShutGunShot();
+        if (NumerOfGun == 0) AutomaticShot();
+        //
+        else if (NumerOfGun == 1) ShutGunShot();
+
 
         
         }
@@ -37,7 +43,7 @@ public class Reycast : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);
 
-        Physics.Raycast(ray, out hit);
+        Physics.Raycast(ray, out hit, Mathf.Infinity, Trigger_layer_mask);
         if (hit.collider != null){
             if (hit.collider.GetComponent<Collider>().name == target.GetComponent<Collider>().name) {
                 //Debug.Log("Виден");
@@ -53,7 +59,7 @@ public class Reycast : MonoBehaviour
             {
                 if (CanFier){
                     timer = timeSpawn;
-                    EnemyScript.Hit();
+                    EnemyScript.TakeHit();
                     BulletObj = Instantiate(BulletPrefab, BulletShutPoint.position, transform.rotation);
                     BulletObj.GetComponent<Bullet>().LiveTime = Vector3.Distance(BulletShutPoint.position, target.transform.position)/BulletSpeed;
                     BulletObj.GetComponent<Bullet>().BulletSpeed = BulletSpeed;
@@ -67,7 +73,7 @@ public class Reycast : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);
-        Physics.Raycast(ray, out hit);
+        Physics.Raycast(ray, out hit, Mathf.Infinity, Trigger_layer_mask);
         if (hit.collider != null){
             if (hit.collider.GetComponent<Collider>().name == target.GetComponent<Collider>().name) {
                 //Debug.Log("Виден");

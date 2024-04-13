@@ -12,8 +12,12 @@ public class EventBus
     public static Action<float, Vector3, float, float > Exploded;
     public static Action<float, float, float> ExplodeAsked;
     
+    public static Action<float> MobDespawned;
+    public static Action<float> MobSpawned;
+
     public static Action removed;
 
+    public static Action<Vector2> PlayerCameToPlane;
 
 
 

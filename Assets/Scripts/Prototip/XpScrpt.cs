@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class XpScrpt : MonoBehaviour
+public class HPScrpt : MonoBehaviour
 {
     // Start is called before the first frame update
 
     public Enemy turget;
     public TextMeshPro my_text;
     public Transform EnemyCentr;
-    float Xp;
+    float HP;
     void Start()
     {
     }
@@ -19,7 +19,7 @@ public class XpScrpt : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(-1,0,0); 
         transform.position = EnemyCentr.position + new Vector3(0,1,+2);
-        my_text.text = Mathf.Round(turget.Xp).ToString();
+        my_text.text = Mathf.Round(turget.HP).ToString();
 
         
     }
