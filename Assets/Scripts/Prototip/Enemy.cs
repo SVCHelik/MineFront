@@ -44,7 +44,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "DamageZone")
         {
-            Xp -=10;
+            Xp -=other.gameObject.GetComponent<Trigger>().TicDamage;
+
         }
     }
 }
