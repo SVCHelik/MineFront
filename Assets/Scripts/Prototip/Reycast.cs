@@ -30,14 +30,14 @@ public class Reycast : MonoBehaviour
         target = Functions.FindNearObject("Enemy", transform.position);
         
         timer -= Time.deltaTime;
-        if (NumerOfGun == 0) AutomaticShot();
+        if (NumerOfGun == 0) AutomaticShot(100);
         //
         else if (NumerOfGun == 1) ShutGunShot();
 
 
         
         }
-    public void AutomaticShot()
+    public void AutomaticShot(float damage)
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);
@@ -58,7 +58,7 @@ public class Reycast : MonoBehaviour
             {
                 if (CanFier){
                     timer = timeSpawn;
-                    EnemyScript.TakeHit();
+                    EnemyScript.ApplyDamage(damage);
                     BulletObj = Instantiate(BulletPrefab, BulletShutPoint.position, transform.rotation);
                     BulletObj.GetComponent<Bullet>().LiveTime = Vector3.Distance(BulletShutPoint.position, target.transform.position)/BulletSpeed;
                     BulletObj.GetComponent<Bullet>().BulletSpeed = BulletSpeed;

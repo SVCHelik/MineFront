@@ -1,7 +1,7 @@
 using UnityEngine;
 using NTC.Pool;
 
-public class Enemy : MonoBehaviour, IPoolable
+public class Enemy : MonoBehaviour, IPoolable, IDamageable
 {
     public GameObject[] players;
     public Transform target;
@@ -43,25 +43,20 @@ public class Enemy : MonoBehaviour, IPoolable
     }
     private void FixedUpdate() 
      {
-        if ((transform.position - target.position).magnitude > 50)
+        if (Vector3.Distance(transform.position, target.position) > 50)
             NightPool.Despawn(gameObject);
         if (target)
             transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
         
     }
-    public void TakeHit(){
+
+
+    public void ApplyDamage(float damage)
+    {
         Debug.Log(HP);
         if(HP >= 10){
             HP -=10;
         }
         else NightPool.Despawn(gameObject);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "DamageZone")
-        {
-            TakeHit();
-        }
     }
 }
