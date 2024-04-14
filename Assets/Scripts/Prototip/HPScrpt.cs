@@ -6,7 +6,7 @@ public class HPScrpt : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public Enemy turget;
+    public Enemy target;
     public TextMeshPro my_text;
     public Transform EnemyCentr;
     float HP;
@@ -19,7 +19,7 @@ public class HPScrpt : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(-1,0,0); 
         transform.position = EnemyCentr.position + new Vector3(0,1,+2);
-        my_text.text = Mathf.Round(turget.HP).ToString();
+        my_text.text = Mathf.Round(target.HP).ToString();
 
         
     }
