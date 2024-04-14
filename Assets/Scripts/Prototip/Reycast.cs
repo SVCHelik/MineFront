@@ -18,6 +18,7 @@ public class Reycast : MonoBehaviour
     public Transform BulletShutPoint;
     public GameObject BulletObj;
     int Trigger_layer_mask = 1 << 9;
+    public GameObject ShutObj;
 
     private void Start()
     {
@@ -87,7 +88,10 @@ public class Reycast : MonoBehaviour
             {
                 if (CanFier){
                     timer = timeSpawn;
-                    Instantiate(ShutPrefab, BulletShutPoint.position, transform.rotation);
+                    ShutObj = Instantiate(ShutPrefab, BulletShutPoint.position, transform.rotation);
+                    ShutObj.GetComponent<Trigger>().FullDamage = 20;
+                    ShutObj.GetComponent<Trigger>().LiveTime = 2;
+
                 }
                 
                 

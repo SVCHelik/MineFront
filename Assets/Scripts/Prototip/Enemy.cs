@@ -59,4 +59,12 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
         }
         else NightPool.Despawn(gameObject);
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "DamageZone")
+        {
+            TakeHit();
+        }
+    }
 }
