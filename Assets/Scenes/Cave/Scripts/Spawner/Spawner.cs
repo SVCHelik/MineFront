@@ -4,11 +4,11 @@ public class Spawner : MonoBehaviour
 {
     float radius;
     private void OnEnable() {
-        EventBus.SpawnAsked += spawn; 
+        //EventBus.SpawnAsked += spawn; 
     }
 
     private void OnDisable() {
-        EventBus.SpawnAsked -= spawn;
+        //EventBus.SpawnAsked -= spawn;
     }
     private void Start()
     {

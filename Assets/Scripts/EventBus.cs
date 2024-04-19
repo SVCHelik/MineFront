@@ -17,7 +17,8 @@ public class EventBus
 
     public static Action removed;
 
-    public static Action<Vector2> PlayerCameToPlane;
+    public static Action<Vector3> Player1Moved;
+    public static Action<Vector3> Player2Moved;
 
 
 

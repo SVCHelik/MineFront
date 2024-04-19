@@ -10,7 +10,7 @@ public class SpawnController: MonoBehaviour
     public float spawnSpeed = 0.1f;
     private float timer;
 
-    private Spawner[] spawnPoints;
+    [SerializeField] private Spawner[] spawnPoints;
     public GameObject[] mobs;
     public int i;
 
@@ -18,6 +18,7 @@ public class SpawnController: MonoBehaviour
     public float curentEnemyHPAll = 0;
 
     private void OnEnable() {
+        spawnPoints = GetComponentsInChildren<Spawner>();
         EventBus.MobSpawned += OnMobSpawned;
         EventBus.MobDespawned += OnMobDespawned;
     }
@@ -29,9 +30,7 @@ public class SpawnController: MonoBehaviour
     private void Awake() {
         
     }
-    private void Start()
-    {
-        spawnPoints = GetComponentsInChildren<Spawner>();
+    private void Start(){
     }
 
     void Update()

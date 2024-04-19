@@ -1,36 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class CamField_moove : MonoBehaviour
 {
-    public float Player1_x;
-    public float Player1_z;
-    public float Player2_x;
-    public float Player2_z;
-    public float playerDist;
     [SerializeField] private float _speedCam;
+    public float playerDist;
     private Vector3 _Direction;
-    private Vector3 _PlayersPos;
-    private float Players_x;
-    private float Players_z;
+    private Vector3 PlayersMidPoint;
+    public Transform[] players;
+    public Vector3 playersDistVect;
     // Start is called before the first frame update
-    
-
     // Update is called once per frame
+    void Start(){
+    }
     void Update()
     {
-        _PlayersPos.x = (Player1_x + Player2_x)/2;
-        _PlayersPos.y = 1f;
-        _PlayersPos.z = (Player1_z + Player2_z)/2;
-        _Direction = (_PlayersPos - transform.position).normalized;
-        Players_x = Mathf.Abs( Player1_x - Player2_x);
-        Players_z = Mathf.Abs( Player1_z - Player2_z);
-        transform.localScale = new Vector3 (Players_x, 0.5f, Players_z);
-        playerDist = Mathf.Max(Players_x, Players_z*1.7f);
+        PlayersMidPoint = (players[0].position + players[1].position)/2;    
+        PlayersMidPoint.y = 1f;
+        _Direction = (PlayersMidPoint - transform.position).normalized;
+        playersDistVect = players[0].position - players[1].position;
+        transform.localScale = new Vector3 (Mathf.Abs(playersDistVect.x), 0.5f, Mathf.Abs(playersDistVect.z));
+        playerDist = playersDistVect.magnitude;
     }
     private void FixedUpdate()
     {
-        transform.position+=_Direction * _speedCam * Time.deltaTime;
+        transform.position = Vector3.Lerp(transform.position, transform.position + _Direction * _speedCam, Time.fixedDeltaTime);
     }
+
 }

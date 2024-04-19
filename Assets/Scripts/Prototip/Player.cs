@@ -1,6 +1,14 @@
 
 using UnityEngine;
-using NTC.MonoCache;
+
+public static class PlayerObserver{
+    public static Transform Player1Pos;
+    public static Transform Player2Pos;
+    public static float getPlayersDist(){
+        return Vector3.Distance(Player1Pos.position, Player2Pos.position);
+    }
+
+}
 
 public class Player : MonoBehaviour
 { 
@@ -17,6 +25,12 @@ public class Player : MonoBehaviour
     {
         _speed = _speedWalk;
         _characterController = GetComponent<CharacterController>();
+        if (player_nomber == 1){
+            PlayerObserver.Player1Pos = transform;
+        }
+        else {
+            PlayerObserver.Player2Pos = transform;
+        }
     }
     // Update is called once per frame
     void Update()
@@ -27,14 +41,10 @@ public class Player : MonoBehaviour
         if (player_nomber == 1){
             x = Input.GetAxis("horizontal1");
             z = Input.GetAxis("vertical1");
-            _CamF.Player1_x = transform.position.x;
-            _CamF.Player1_z = transform.position.z;
         }
         else {
             x = Input.GetAxis("horizontal2");
             z = Input.GetAxis("vertical2");
-            _CamF.Player2_x = transform.position.x;
-            _CamF.Player2_z = transform.position.z;
         }
         _walkDirection = transform.right * x + transform.forward * z;
         _walkDirection.Normalize();

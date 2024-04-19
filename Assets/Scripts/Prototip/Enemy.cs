@@ -9,12 +9,9 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     //private Vector2 movement;
     public float HP = 100;
     public float maxHP = 100;
-    public Rigidbody rigidBody;
 
     public void OnDespawn()
     {
-        // rigidBody.velocity = Vector3.zero;
-        // rigidBody.angularVelocity = Vector3.zero;
         EventBus.MobDespawned?.Invoke(maxHP);
     }
 
@@ -24,7 +21,6 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
         EventBus.MobSpawned?.Invoke(HP);
     }
     void Start(){
-        rigidBody = GetComponent<Rigidbody>();
         players = GameObject.FindGameObjectsWithTag("Player"); 
     }
 
