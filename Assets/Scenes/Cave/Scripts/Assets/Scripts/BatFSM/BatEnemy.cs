@@ -9,6 +9,13 @@ public class BatEnemy : Enemy{
         transform.LookAt(target);
     }
 
-    public void Update() {}
+    public void Update() {
+
+
+    }
+    public override void PerformAttack() {
+        //тут скрипт атаки      
+    }
+   
 
 }

@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
      
     }
 
-    public void PerformAttack(){
+    public virtual void PerformAttack(){
         
     }
 

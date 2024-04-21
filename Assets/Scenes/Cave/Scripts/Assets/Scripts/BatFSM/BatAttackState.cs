@@ -13,8 +13,9 @@ public class BatAttackState : State {
         if(Vector3.Distance(transform.position, batEnemy.target.position) + batEnemy.DistanceOffset >= batEnemy.attackDistance){
             ChangeState("BatFollowState");
         }
+        //тут применение атаки
     }
-
+    
     private void OnDisable() {
         
     }
