@@ -35,8 +35,6 @@ public class Reycast : MonoBehaviour
         //
         else if (NumerOfGun == 1) ShutGunShot();
 
-
-        
         }
     public void AutomaticShot(float damage)
     {

@@ -7,6 +7,8 @@ public static class PlayerObserver{
     public static float getPlayersDist(){
         return Vector3.Distance(Player1Pos.position, Player2Pos.position);
     }
+    public static bool Is1PlayerAlive;
+    public static bool Is2PlayerAlive;
 
 }
 
@@ -27,10 +29,13 @@ public class Player : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         if (player_nomber == 1){
             PlayerObserver.Player1Pos = transform;
+            PlayerObserver.Is1PlayerAlive = true;
         }
         else {
             PlayerObserver.Player2Pos = transform;
+            PlayerObserver.Is2PlayerAlive = true;
         }
+
     }
     // Update is called once per frame
     void Update()

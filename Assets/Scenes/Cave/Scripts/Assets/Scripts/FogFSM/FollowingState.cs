@@ -11,7 +11,6 @@ public class FollowingState : State
 
     private void OnEnable()
     {
-        Debug.Log("Following");
         timer = 0;
     }
 

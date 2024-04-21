@@ -5,7 +5,7 @@ using Pixelplacement;
 
 public class SpawningState : State
 {
-    public SpawnController spawnController;
+    [SerializeField] private SpawnController spawnController;
     public FogFSM fogData;
     public ParticleSystem.MainModule fogMain;
 

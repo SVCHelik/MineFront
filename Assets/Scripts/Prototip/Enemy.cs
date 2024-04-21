@@ -2,8 +2,7 @@ using UnityEngine;
 using NTC.Pool;
 
 public class Enemy : MonoBehaviour, IPoolable, IDamageable
-{
-    public GameObject[] players;
+{   
     public Transform target;
     public float moveSpeed = 5f;
     //private Vector2 movement;
@@ -21,31 +20,39 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
         EventBus.MobSpawned?.Invoke(HP);
     }
     void Start(){
-        players = GameObject.FindGameObjectsWithTag("Player"); 
     }
 
     void Update()
     {
+        FindTarget();   
         transform.LookAt(target);
-        if(players.Length == 2)
-            if ((transform.position - players[0].transform.position).magnitude <= (transform.position - players[1].transform.position).magnitude)
-                target = players[0].transform;
-            else
-                target = players[1].transform;
-        else if(players[0])
-            target = players[0].transform;
-        
-        
     }
     private void FixedUpdate() 
-     {
+    {
+        Move();
+    }
+    public void Move(){
         if (Vector3.Distance(transform.position, target.position) > 50)
             NightPool.Despawn(gameObject);
         if (target)
             transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
-        
+
+    }
+    public void FindTarget(){
+        if(PlayerObserver.Is1PlayerAlive && PlayerObserver.Is2PlayerAlive)
+            if (Vector3.Distance(transform.position, PlayerObserver.Player1Pos.transform.position) <= Vector3.Distance(transform.position, PlayerObserver.Player2Pos.transform.position))
+                target = PlayerObserver.Player1Pos;
+            else
+                target = PlayerObserver.Player2Pos;
+        else if(PlayerObserver.Is1PlayerAlive) target = PlayerObserver.Player1Pos;
+        else if(PlayerObserver.Is2PlayerAlive) target = PlayerObserver.Player2Pos;
+        else NightPool.Despawn(gameObject);
+     
     }
 
+    public void PerformAttack(){
+        
+    }
 
     public void ApplyDamage(float damage)
     {
@@ -55,4 +62,5 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
         }
         else NightPool.Despawn(gameObject);
     }
+
 }
