@@ -43,3 +43,13 @@ MonoBehaviour:
     _preloadSize: 100
     _dontDestroyOnLoad: 0
     _warnings: 0
+  - _name: stone
+    _enabled: 1
+    _prefab: {fileID: 2211465168421949878, guid: de595891cae69f9429248c8b73db44f2, type: 3}
+    _behaviourOnCapacityReached: 0
+    _despawnType: 0
+    _callbacksType: 0
+    _capacity: 300
+    _preloadSize: 300
+    _dontDestroyOnLoad: 0
+    _warnings: 0

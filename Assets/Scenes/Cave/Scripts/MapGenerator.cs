@@ -9,7 +9,8 @@ public class MapGenerator : MonoBehaviour {
 
 	public int width;
 	public int height;
-
+	[Range(1,10)]
+	public int scale;
 	public string seed;
 	public bool useRandomSeed;
 
@@ -59,7 +60,7 @@ public class MapGenerator : MonoBehaviour {
 		}
 
 		MeshGenerator meshGen = GetComponent<MeshGenerator>();
-		meshGen.GenerateMesh(borderedMap, 1);
+		meshGen.GenerateMesh(borderedMap, scale);
 	}
 
 	void ProcessMap() {
@@ -98,7 +99,7 @@ public class MapGenerator : MonoBehaviour {
 			foreach(Coord coord in tmp.edgeTiles){
 				i++;
 				if (i % 20 == 0)
-					NightPool.Spawn(prefub, CoordToWorldPoint(coord), quaternion.identity);
+					NightPool.Spawn(prefub, CoordToWorldPoint(coord) - new Vector3(0, 10, 0), quaternion.identity);
 					
 			}
 		}
@@ -250,7 +251,7 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	Vector3 CoordToWorldPoint(Coord tile) {
-		return new Vector3 (-width / 2 + .5f + tile.tileX, 2, -height / 2 + .5f + tile.tileY);
+		return new Vector3 (-width / 2 + .5f + tile.tileX, 2, -height / 2 + .5f + tile.tileY)*scale;
 	}
 
 	List<List<Coord>> GetRegions(int tileType) {

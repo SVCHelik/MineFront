@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     {
         Move();
     }
-    public void Move(){
+    public virtual void Move(){
         if (Vector3.Distance(transform.position, target.position) > 50)
             NightPool.Despawn(gameObject);
         if (target)
@@ -57,8 +57,8 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     public void ApplyDamage(float damage)
     {
         Debug.Log(HP);
-        if(HP >= 10){
-            HP -=10;
+        if(HP >= damage){
+            HP -= damage;
         }
         else NightPool.Despawn(gameObject);
     }
