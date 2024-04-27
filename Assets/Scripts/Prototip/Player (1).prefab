@@ -74,11 +74,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3e48e1a8796ef4ab00912817ed8405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exp: 0
+  lvl: 0
+  currentHP: 0
+  maxHP: 0
   _speedWalk: 4
   _speedRun: 6
   player_nomber: 2
-  Functions: {fileID: 0}
+  _characterController: {fileID: 0}
   _CamF: {fileID: 0}
+  canMine: 0
+  speedMine: 0
+  damageMine: 0
 --- !u!114 &2604645511900117578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,9 +98,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e1dd1b2819f464f8ddf922ad30ac19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Functions: {fileID: 0}
   timeSpawn: 0.2
+  Damage_bullet: 40
+  BulletSpeed: 100
+  NumerOfGun: 0
   target: {fileID: 0}
+  BulletPrefab: {fileID: 0}
+  ShutPrefab: {fileID: 0}
+  BulletShutPoint: {fileID: 0}
+  BulletObj: {fileID: 0}
+  ShutObj: {fileID: 0}
 --- !u!1 &2918406075737474294
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class Reycast : MonoBehaviour
 {
 
     public float timeSpawn = 2f;
+    public float Damage_bullet = 50f;
     private float timer;
     private bool CanFier = false;
     public float BulletSpeed = 100f;
@@ -31,7 +32,7 @@ public class Reycast : MonoBehaviour
         target = Functions.FindNearObject("Enemy", transform.position);
         
         timer -= Time.deltaTime;
-        if (NumerOfGun == 0) AutomaticShot(100);
+        if (NumerOfGun == 0) AutomaticShot(Damage_bullet);
         //
         else if (NumerOfGun == 1) ShutGunShot();
 

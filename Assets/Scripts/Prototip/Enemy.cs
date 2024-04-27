@@ -20,7 +20,6 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
         EventBus.MobSpawned?.Invoke(HP);
     }
     void Start(){
-        target = transform;
     }
 
     void Update()
