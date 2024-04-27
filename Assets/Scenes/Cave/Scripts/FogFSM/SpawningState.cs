@@ -9,19 +9,18 @@ public class SpawningState : State
     public FogFSM fogData;
     public ParticleSystem.MainModule fogMain;
 
-    GameObject[] spawners;
-    float progress = 0;
     float timer;
     private void Start() {
         fogMain = fogData.fog.main;
+        fogData.spawnController.mobs = fogData.fogMobs;
     }
 
     private void OnEnable() {
         
-        Debug.Log("Spawning");
-        //fogFsm.transposer.enabled = false;
-        spawners = SpawnPointsInit();
+        //fogFsm.transposer.enabled = false; 
+        SpawnPointsInit();
         fogData.spawnController.enabled = true;
+        fogData.fog.Play();
         timer = 0;
     }
 
@@ -31,13 +30,13 @@ public class SpawningState : State
         // Check conditions for transitioning to other states
         if (PlayerObserver.getPlayersDist() < fogData.maxDist)
         {
-            ChangeState("FollowingState");
+            ChangeState("FollowState");
         }
 
         timer += Time.deltaTime;
         if(timer <= fogData.FogChangingDuration){
-            fogMain.maxParticles = (int)(fogData.showCurve.Evaluate(timer) * fogData.MaxCount);
             fogData.spawnController.spawnSpeed = fogData.spawnCurve.Evaluate(timer);
+            fogMain.maxParticles = (int)(fogData.showCurve.Evaluate(timer) * fogData.MaxCount);
         }
         
     }
@@ -47,10 +46,9 @@ public class SpawningState : State
     /// </summary>
     void OnDisable()
     {
-        spawnController.enabled = false;
         NightPool.GetPoolByPrefab(fogData.spawnerPrefab).DespawnAllClones();
         for (int i = 0; i< fogData.fogMobs.Length; i++){
-            NightPool.GetPoolByPrefab(fogData.fogMobs[i]).DestroyAllClones();
+            NightPool.GetPoolByPrefab(fogData.fogMobs[i]).DespawnAllClones();
         }
     }
 

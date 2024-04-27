@@ -30,7 +30,7 @@ public class ExpPart : Enemy {
     }
     public override void Move(){
         transform.RotateAround(target.position, Vector3.up, orbitSpeed * Time.deltaTime);
-        //transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         transform.LookAt(target);
     }
 

@@ -12,6 +12,9 @@ public class FollowingState : State
     private void OnEnable()
     {
         timer = 0;
+        fogData.fog.Stop();
+        fogData.spawnController.enabled = false;
+
     }
 
     
@@ -24,6 +27,7 @@ public class FollowingState : State
         timer += Time.deltaTime;
         if(fogMain.maxParticles != 0){
             fogMain.maxParticles = (int)(fogData.hideCurve.Evaluate(timer) * fogData.MaxCount);
+    
         }
     }
 

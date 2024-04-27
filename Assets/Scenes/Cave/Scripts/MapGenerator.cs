@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using NTC.Pool;
 using Unity.Mathematics;
-using Unity.AI.Navigation;
+
 public class MapGenerator : MonoBehaviour {
 
 	public int width;
@@ -19,8 +19,10 @@ public class MapGenerator : MonoBehaviour {
 
 	int[,] map;
 
-	[SerializeField] private GameObject prefub;
+	[SerializeField] private GameObject StonePrefub;
 	private List<GameObject> clones;
+	public GameObject PlayersPrefub;
+	public Coord SpawnCoord;
 
 
 	void Start() {
@@ -30,24 +32,24 @@ public class MapGenerator : MonoBehaviour {
 
 	void Update() {
 		if (Input.GetMouseButtonDown(0)) {
+			NightPool.GetPoolByPrefab(StonePrefub).DespawnAllClones();
 			GenerateMap();
-			
 		}
 	}
 
 	void GenerateMap() {
 		map = new int[width,height];
 		RandomFillMap();
-
+		SpawnCoord = new Coord(width-15, height-15);
+		DrawCircle(SpawnCoord, 10);
 		for (int i = 0; i < 5; i ++) {
 			SmoothMap();
 		}
-
 		ProcessMap ();
 
 		int borderSize = 1;
 		int[,] borderedMap = new int[width + borderSize * 2,height + borderSize * 2];
-
+		
 		for (int x = 0; x < borderedMap.GetLength(0); x ++) {
 			for (int y = 0; y < borderedMap.GetLength(1); y ++) {
 				if (x >= borderSize && x < width + borderSize && y >= borderSize && y < height + borderSize) {
@@ -58,7 +60,8 @@ public class MapGenerator : MonoBehaviour {
 				}
 			}
 		}
-
+		
+		
 		MeshGenerator meshGen = GetComponent<MeshGenerator>();
 		meshGen.GenerateMesh(borderedMap, scale);
 	}
@@ -94,18 +97,30 @@ public class MapGenerator : MonoBehaviour {
 		survivingRooms [0].isAccessibleFromMainRoom = true;
 
 		ConnectClosestRooms (survivingRooms);
-		int i = 0;
+		SpawnAll(survivingRooms);
+	}
+
+    private void SpawnAll(List<Room> survivingRooms)
+    {
+        int i = 0;
+		Vector3 MaxWorldPoint = new Vector3(-width*scale/2, 0, -height*scale/2);
+		Vector3 spawnPoint = new Vector3(width*scale/2, 0, height*scale/2);
+		NightPool.Spawn(PlayersPrefub, CoordToWorldPoint(SpawnCoord), quaternion.identity);
+		Vector3 tmpCoord;
 		foreach(Room tmp in survivingRooms){
 			foreach(Coord coord in tmp.edgeTiles){
 				i++;
-				if (i % 20 == 0)
-					NightPool.Spawn(prefub, CoordToWorldPoint(coord) - new Vector3(0, 10, 0), quaternion.identity);
-					
+				if (i % 20 == 0){
+					tmpCoord = CoordToWorldPoint(coord);
+					tmpCoord.y = 0;
+					 
+					NightPool.Spawn(StonePrefub, tmpCoord, quaternion.identity).GetComponent<Stone>().SetColor(Vector3.Distance(spawnPoint, tmpCoord)/Vector3.Distance(spawnPoint, MaxWorldPoint));
+				}
 			}
 		}
-	}
+    }
 
-	void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false) {
+    void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false) {
 
 		List<Room> roomListA = new List<Room> ();
 		List<Room> roomListB = new List<Room> ();
@@ -358,7 +373,7 @@ public class MapGenerator : MonoBehaviour {
 		return wallCount;
 	}
 
-	struct Coord {
+	public struct Coord {
 		public int tileX;
 		public int tileY;
 
