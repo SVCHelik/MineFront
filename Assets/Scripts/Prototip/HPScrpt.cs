@@ -20,7 +20,5 @@ public class HPScrpt : MonoBehaviour
         transform.eulerAngles = new Vector3(-1,0,0); 
         transform.position = EnemyCentr.position + new Vector3(0,1,+2);
         my_text.text = Mathf.Round(target.HP).ToString();
-
-        
     }
 }

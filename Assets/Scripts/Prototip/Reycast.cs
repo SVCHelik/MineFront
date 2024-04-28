@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using NTC.Pool;
 
 public class Reycast : MonoBehaviour
 {
@@ -30,12 +29,12 @@ public class Reycast : MonoBehaviour
 
     void Update(){
         target = Functions.FindNearObject("Enemy", transform.position);
-        
-        timer -= Time.deltaTime;
-        if (NumerOfGun == 0) AutomaticShot(Damage_bullet);
-        //
-        else if (NumerOfGun == 1) ShutGunShot();
-
+        if(target != null){
+                timer -= Time.deltaTime;
+                if (NumerOfGun == 0) AutomaticShot(Damage_bullet);
+                //
+                else if (NumerOfGun == 1) ShutGunShot();
+            }
         }
     public void AutomaticShot(float damage)
     {
@@ -59,7 +58,7 @@ public class Reycast : MonoBehaviour
                 if (CanFier){
                     timer = timeSpawn;
                     EnemyScript.ApplyDamage(damage);
-                    BulletObj = Instantiate(BulletPrefab, BulletShutPoint.position, transform.rotation);
+                    BulletObj = NightPool.Spawn(BulletPrefab, BulletShutPoint.position, transform.rotation);
                     BulletObj.GetComponent<Bullet>().LiveTime = Vector3.Distance(BulletShutPoint.position, target.transform.position)/BulletSpeed;
                     BulletObj.GetComponent<Bullet>().BulletSpeed = BulletSpeed;
                 }

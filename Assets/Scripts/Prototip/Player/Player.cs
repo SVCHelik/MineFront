@@ -25,8 +25,6 @@ public class Player : MonoBehaviour
     private Vector3 _walkDirection;
     private Vector3 _velocity;
     private float _speed;
-    public CamField_moove _CamF;
-
     public bool canMine;
     public float speedMine;
     public float damageMine;
@@ -100,6 +98,7 @@ public class Player : MonoBehaviour
         //Vector3 direction_fix = new Vector3 (direction.x * transform.forward + direction.z * transform.forward)
         Vector3 fixdir = transform.InverseTransformDirection(_walkDirection);
         _characterController.Move(fixdir * _speedWalk * Time.fixedDeltaTime);
+
     }
 
 

@@ -105,7 +105,7 @@ public class MapGenerator : MonoBehaviour {
         int i = 0;
 		Vector3 MaxWorldPoint = new Vector3(-width*scale/2, 0, -height*scale/2);
 		Vector3 spawnPoint = new Vector3(width*scale/2, 0, height*scale/2);
-		NightPool.Spawn(PlayersPrefub, CoordToWorldPoint(SpawnCoord), quaternion.identity);
+		NightPool.Spawn(PlayersPrefub, spawnPoint, quaternion.identity);
 		Vector3 tmpCoord;
 		foreach(Room tmp in survivingRooms){
 			foreach(Coord coord in tmp.edgeTiles){
