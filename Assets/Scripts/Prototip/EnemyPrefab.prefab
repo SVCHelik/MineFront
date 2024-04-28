@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c9f419dfc981740a4bc065ace12a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turget: {fileID: 3217115498237387435}
+  target: {fileID: 3217115498237387435}
   my_text: {fileID: 157368868843079834}
   EnemyCentr: {fileID: 560317352211398634}
 --- !u!1 &2937838657116118551
@@ -341,10 +341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a68046cdcd09814c8a4fd5052f69799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
   target: {fileID: 0}
   moveSpeed: 5
-  Xp: 100
+  HP: 100
+  maxHP: 100
 --- !u!65 &8403504727983851591
 BoxCollider:
   m_ObjectHideFlags: 0

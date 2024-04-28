@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1675ca1885e647e88c4e999d1164b08c, type: 3}
-  m_Name: Fog
+  m_Name: ObjectPool
   m_EditorClassIdentifier: 
   _poolPresets:
   - _name: 
@@ -43,13 +43,23 @@ MonoBehaviour:
     _preloadSize: 100
     _dontDestroyOnLoad: 0
     _warnings: 0
-  - _name: stone
+  - _name: bullet
     _enabled: 1
     _prefab: {fileID: 2211465168421949878, guid: de595891cae69f9429248c8b73db44f2, type: 3}
     _behaviourOnCapacityReached: 1
     _despawnType: 2
     _callbacksType: 1
     _capacity: 1025
+    _preloadSize: 300
+    _dontDestroyOnLoad: 0
+    _warnings: 0
+  - _name: stone
+    _enabled: 1
+    _prefab: {fileID: 6514502757110777768, guid: 99b5dab5dc630f14ebe4ee31232507b6, type: 3}
+    _behaviourOnCapacityReached: 1
+    _despawnType: 2
+    _callbacksType: 1
+    _capacity: 500
     _preloadSize: 300
     _dontDestroyOnLoad: 0
     _warnings: 0

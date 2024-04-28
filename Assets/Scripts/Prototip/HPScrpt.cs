@@ -7,7 +7,7 @@ public class HPScrpt : MonoBehaviour
     // Start is called before the first frame update
 
     public Enemy target;
-    public TextMeshPro my_text;
+    public TextMeshPro my_text = new TextMeshPro();
     public Transform EnemyCentr;
     float HP;
     void Start()

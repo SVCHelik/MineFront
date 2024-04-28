@@ -15,7 +15,7 @@ public class TurretMove : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {  
         if (flymod == 0)
         {
             if (Functions.FindNearObject("Enemy", transform.position))
