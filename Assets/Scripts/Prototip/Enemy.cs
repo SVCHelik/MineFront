@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     //private Vector2 movement;
     public float HP = 100;
     public float maxHP = 100;
+    public GameObject expPref;
 
     public void OnDespawn()
     {
@@ -51,6 +52,11 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
      
     }
 
+
+    public void spawnExp(){
+        GameObject tmp  = NightPool.Spawn(expPref, transform.position, Quaternion.identity);
+        tmp.GetComponent<ExpPart>().value = (int)maxHP;
+    }
     public virtual void PerformAttack(){
         
     }
@@ -61,7 +67,13 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
         if(HP >= damage){
             HP -= damage;
         }
-        else NightPool.Despawn(gameObject);
+        else Die();
+    }
+    public void Die(){
+        spawnExp();
+        NightPool.Despawn(gameObject);
+
+        
     }
 
 }

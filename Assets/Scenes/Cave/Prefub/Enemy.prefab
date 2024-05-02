@@ -201,12 +201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a68046cdcd09814c8a4fd5052f69799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
   target: {fileID: 0}
   moveSpeed: 5
   HP: 100
   maxHP: 100
-  rigidBody: {fileID: 0}
+  expPref: {fileID: 2962454471003593544, guid: e436b3ee0b9a0ac4bb7a562e7c654de6, type: 3}
 --- !u!1 &4901364192928420946
 GameObject:
   m_ObjectHideFlags: 0

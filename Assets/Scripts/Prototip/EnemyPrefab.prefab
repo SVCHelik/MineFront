@@ -345,6 +345,7 @@ MonoBehaviour:
   moveSpeed: 5
   HP: 100
   maxHP: 100
+  expPref: {fileID: 2962454471003593544, guid: e436b3ee0b9a0ac4bb7a562e7c654de6, type: 3}
 --- !u!65 &8403504727983851591
 BoxCollider:
   m_ObjectHideFlags: 0

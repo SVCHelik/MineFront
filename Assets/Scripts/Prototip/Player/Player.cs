@@ -1,6 +1,7 @@
 
 using UnityEngine;
-
+using NTC.OverlapSugar;
+using System;
 public static class PlayerObserver{
     public static Transform Player1Pos;
     public static Transform Player2Pos;
@@ -14,8 +15,9 @@ public static class PlayerObserver{
 
 public class Player : MonoBehaviour
 { 
-    public int exp;
-    public int lvl;
+    public int expValue;
+    public int level;
+    public int oreValue;
     public int currentHP;
     public int maxHP;
     [SerializeField] private float _speedWalk;
@@ -23,13 +25,14 @@ public class Player : MonoBehaviour
     [SerializeField] public float player_nomber;
     public CharacterController _characterController;
     private Vector3 _walkDirection;
-    private Vector3 _velocity;
+    
     private float _speed;
-    public bool canMine;
     public float speedMine;
     public float damageMine;
-    Stone stone;
     float timer = 0;
+
+
+    [SerializeField] OverlapSettings overlapStone;
 
 
     void Start()
@@ -57,8 +60,8 @@ public class Player : MonoBehaviour
             x = Input.GetAxis("horizontal1");
             z = Input.GetAxis("vertical1");
             if(Input.GetKeyDown("1")){
-                if(timer > speedMine && canMine) {
-                    stone?.ApplyDamage(damageMine);    
+                if(timer > speedMine) {
+                    CastStoneMine();
                     timer = 0;
                 }
             }
@@ -67,8 +70,8 @@ public class Player : MonoBehaviour
             x = Input.GetAxis("horizontal2");
             z = Input.GetAxis("vertical2");
             if(Input.GetKeyDown("2")){
-                if(timer > speedMine && canMine) {
-                    stone?.ApplyDamage(damageMine); 
+                if(timer > speedMine) {
+                    CastStoneMine();
                     timer = 0;
                 }  
             }
@@ -85,12 +88,7 @@ public class Player : MonoBehaviour
         Walk();
     }
     
-    void ExpAttack(Collider[] colliders){
-        foreach (var collider in colliders)
-        {
-            collider.GetComponent<ExpPart>().PerformAttack();
-        }
-    }
+  
 
     public void Walk()
     {
@@ -101,28 +99,27 @@ public class Player : MonoBehaviour
 
     }
 
-
     private void PlayerRun(bool canRun)
     {
         _speedWalk = canRun ? _speedRun : _speed;
     }
+    private void CastStoneMine(){
+        if(overlapStone.TryFind(out Stone stone)){
+            stone.ApplyDamage(damageMine);
+        }
+    }
     public void ApplyExp(int exp){
-        this.exp += exp;
+        expValue += exp;
+    }
+    public void ApplyOre(int ore){
+        oreValue += ore;
     }
     
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Stone"){
-            canMine = true;
-            stone = other.gameObject.GetComponent<Stone>();
-        }        
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Stone"){
-            canMine = false;
-            stone = null;
-        }        
-    }
     
+    #if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
+        {
+            overlapStone.TryDrawGizmos();
+        }
+    #endif
 }
