@@ -1,24 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using NTC.OverlapSugar;
 using UnityEngine;
 
 
 public class Functions: MonoBehaviour
 {
-    public static GameObject FindNearObject(string Tag, Vector3 Position) // Функция аналогичная Player
+    public static bool TryFindNearEnemy(Vector3 Position, out GameObject nearest, float range = 30) // Функция аналогичная Player
     {
-        GameObject[] All_Enemy;
-        GameObject Near_Enemy;
-        All_Enemy = GameObject.FindGameObjectsWithTag(Tag);
-        Near_Enemy = null;
-        foreach (GameObject One_Enemy in All_Enemy)
+        Collider nearEnemy = null;
+        Collider[] allEnemy = Physics.OverlapSphere(Position, range,1<<7);
+        float minDistance = 1000;
+        float tempDistance;
+        nearest = null;
+        if(allEnemy.Length == 0) return false;
+        foreach (Collider enemy in allEnemy)
         {
-            if (!Near_Enemy) Near_Enemy = One_Enemy;
-            if ((Near_Enemy.transform.position - Position).sqrMagnitude > (One_Enemy.transform.position - Position).sqrMagnitude){
-                Near_Enemy = One_Enemy;
+            tempDistance = Vector3.Distance(enemy.transform.position, Position);
+            if (!nearEnemy){
+                nearEnemy = enemy;
+                minDistance = Vector3.Distance(nearEnemy.transform.position, Position);
+            }
+            else if (minDistance > tempDistance){
+                nearEnemy = enemy;
+                minDistance = tempDistance;
             }
         }
-        return (Near_Enemy);
+        nearest = nearEnemy.gameObject;
+        return true;
     }
 }

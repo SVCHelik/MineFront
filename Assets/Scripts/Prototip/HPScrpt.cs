@@ -17,8 +17,10 @@ public class HPScrpt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles = new Vector3(-1,0,0); 
-        transform.position = EnemyCentr.position + new Vector3(0,1,+2);
-        my_text.text = Mathf.Round(target.HP).ToString();
+        if (target){
+            transform.eulerAngles = new Vector3(-1,0,0); 
+            transform.position = EnemyCentr.position + new Vector3(0,1,+2);
+            my_text.text = Mathf.Round(target.HP).ToString();
+        }
     }
 }

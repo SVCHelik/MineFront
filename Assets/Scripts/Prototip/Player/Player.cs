@@ -32,13 +32,15 @@ public class Player : MonoBehaviour
     float timer = 0;
 
 
-    [SerializeField] OverlapSettings overlapStone;
+    [SerializeField] OverlapSettings overlapMine;
+    [SerializeField] OverlapSettings overlapAttack;
 
 
     void Start()
     {
         _speed = _speedWalk;
         _characterController = GetComponent<CharacterController>();
+        _characterController.enabled = true;
         if (player_nomber == 1){
             PlayerObserver.Player1Pos = transform;
             PlayerObserver.Is1PlayerAlive = true;
@@ -78,8 +80,9 @@ public class Player : MonoBehaviour
         }
         _walkDirection = transform.right * x + transform.forward * z;
         _walkDirection.Normalize();
-        if (Functions.FindNearObject("Enemy", transform.position)){
-            transform.LookAt(Functions.FindNearObject("Enemy", transform.position).transform);
+        
+        if (Functions.TryFindNearEnemy(transform.position, out GameObject target)){
+            transform.LookAt(target.transform);
         }
 
     }
@@ -104,7 +107,7 @@ public class Player : MonoBehaviour
         _speedWalk = canRun ? _speedRun : _speed;
     }
     private void CastStoneMine(){
-        if(overlapStone.TryFind(out Stone stone)){
+        if(overlapMine.TryFind(out Stone stone)){
             stone.ApplyDamage(damageMine);
         }
     }
@@ -119,7 +122,7 @@ public class Player : MonoBehaviour
     #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
-            overlapStone.TryDrawGizmos();
+            overlapMine.TryDrawGizmos();
         }
     #endif
 }

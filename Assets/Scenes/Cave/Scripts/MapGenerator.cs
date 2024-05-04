@@ -31,10 +31,10 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetMouseButtonDown(0)) {
-			NightPool.GetPoolByPrefab(StonePrefub).DespawnAllClones();
-			GenerateMap();
-		}
+		// if (Input.GetMouseButtonDown(0)) {
+		// 	NightPool.GetPoolByPrefab(StonePrefub).DespawnAllClones();
+		// 	GenerateMap();
+		// }
 	}
 
 	void GenerateMap() {
@@ -104,7 +104,7 @@ public class MapGenerator : MonoBehaviour {
     {
         int i = 0;
 		Vector3 MaxWorldPoint = new Vector3(-width*scale/2, 0, -height*scale/2);
-		Vector3 spawnPoint = new Vector3(width*scale/2, 0, height*scale/2);
+		Vector3 spawnPoint = new Vector3(width*scale/2-50, 0, height*scale/2-50);
 		NightPool.Spawn(PlayersPrefub, spawnPoint, quaternion.identity);
 		Vector3 tmpCoord;
 		foreach(Room tmp in survivingRooms){

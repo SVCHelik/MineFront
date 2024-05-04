@@ -17,10 +17,10 @@ public class TurretMove : MonoBehaviour
     void Update()
     {  
         if (flymod == 0)
-        {
-            if (Functions.FindNearObject("Enemy", transform.position))
+        { 
+            if (Functions.TryFindNearEnemy(transform.position, out GameObject target))
             {
-                transform.LookAt(Functions.FindNearObject("Enemy", transform.position).transform);
+                transform.LookAt(target.transform);
             }
         if ((Hosain.transform.position - transform.position).magnitude > 10) flymod = 1;
         }

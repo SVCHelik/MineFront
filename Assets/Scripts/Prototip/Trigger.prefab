@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LiveTime: 1
-  FullDamage: 10
-  TicDamage: 10
+  FullDamage: 100
+  TicDamage: 50
 --- !u!1 &5868987638053240639
 GameObject:
   m_ObjectHideFlags: 0

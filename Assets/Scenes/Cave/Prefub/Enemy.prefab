@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8923074250135361437}
   - component: {fileID: 1570616939945721157}
-  - component: {fileID: 6586708276095079782}
   - component: {fileID: 5221741674338007572}
   m_Layer: 7
   m_Name: Enemy
@@ -56,33 +55,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.45
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6586708276095079782
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937838657116118551}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &5221741674338007572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,8 +69,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   moveSpeed: 5
-  HP: 10000
-  maxHP: 1000
+  HP: 50
+  maxHP: 50
   expPref: {fileID: 2962454471003593544, guid: e436b3ee0b9a0ac4bb7a562e7c654de6, type: 3}
 --- !u!1001 &510303248754477054
 PrefabInstance:

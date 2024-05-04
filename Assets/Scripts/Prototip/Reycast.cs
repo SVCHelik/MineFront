@@ -28,8 +28,7 @@ public class Reycast : MonoBehaviour
     }
 
     void Update(){
-        target = Functions.FindNearObject("Enemy", transform.position);
-        if(target != null){
+        if(Functions.TryFindNearEnemy(transform.position, out target)){
                 timer -= Time.deltaTime;
                 if (NumerOfGun == 0) AutomaticShot(Damage_bullet);
                 //
