@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8944493756878390271}
   - component: {fileID: 7871472709032398730}
+  - component: {fileID: -7133193748617589694}
   - component: {fileID: 3177115042294890314}
   - component: {fileID: 5153280693984941209}
   m_Layer: 0
@@ -62,6 +63,22 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7133193748617589694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2214682645569071943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cab19d18b1d815419a68a9906b86a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 2
+  meleeDamage: 51
+  attackEffectPrefab: {fileID: 5474863940314255920, guid: e8322e0f0aab7ff45b3664bba3a63604, type: 3}
+  attackCooldown: 1
 --- !u!114 &3177115042294890314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,11 +91,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3e48e1a8796ef4ab00912817ed8405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  expValue: 0
+  level: 0
+  oreValue: 0
+  currentHP: 0
+  maxHP: 0
   _speedWalk: 4
   _speedRun: 6
   player_nomber: 1
-  Functions: {fileID: 0}
-  _CamF: {fileID: 0}
+  _characterController: {fileID: 0}
+  speedMine: 0
+  damageMine: 0
+  overlapStone:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _overlapPoint: {fileID: 0}
+    _overlapType: 0
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 0.5
+    _positionOffset: {x: 0, y: 0, z: 0}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &5153280693984941209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,9 +129,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e1dd1b2819f464f8ddf922ad30ac19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Functions: {fileID: 0}
   timeSpawn: 0.2
+  Damage_bullet: 25
+  BulletSpeed: 100
+  NumerOfGun: 0
   target: {fileID: 0}
+  BulletPrefab: {fileID: 2109812171567321033, guid: 6a69d817f25399645949a59d8aac56b3, type: 3}
+  ShutPrefab: {fileID: 0}
+  BulletShutPoint: {fileID: 0}
+  BulletObj: {fileID: 0}
+  ShutObj: {fileID: 0}
 --- !u!1 &6158081879289321963
 GameObject:
   m_ObjectHideFlags: 0

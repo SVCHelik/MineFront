@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     public Transform target;
     public float moveSpeed = 5f;
     //private Vector2 movement;
-    public float HP = 100;
-    public float maxHP = 100;
+    public float HP = 100f;
+    public float maxHP = 100f;
     public GameObject expPref;
 
     public void OnDespawn()
