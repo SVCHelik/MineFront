@@ -133,7 +133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390663713620352311}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5220969, y: -0.02854215, z: 0.017485635, w: 0.8522291}
+  m_LocalRotation: {x: 0.52205515, y: -0.030507874, z: 0.018689886, w: 0.85216105}
   m_LocalPosition: {x: 18.8, y: 16.766281, z: 12.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 2690513168398907102}
   - component: {fileID: 9158599224595385204}
   - component: {fileID: 9156368443943958060}
+  - component: {fileID: 1847326178180621569}
   - component: {fileID: 7332440500948098734}
   m_Layer: 8
   m_Name: Player
@@ -407,17 +408,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3e48e1a8796ef4ab00912817ed8405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exp: 0
-  lvl: 0
+  expValue: 0
+  level: 0
+  oreValue: 0
   currentHP: 1000
   maxHP: 1000
   _speedWalk: 4
   _speedRun: 6
   player_nomber: 1
   _characterController: {fileID: 0}
-  canMine: 0
   speedMine: 0
   damageMine: 100
+  overlapStone:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _overlapPoint: {fileID: 0}
+    _overlapType: 0
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 0.5
+    _positionOffset: {x: 0, y: 0, z: 0}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &1847326178180621569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973902504280238271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e1dd1b2819f464f8ddf922ad30ac19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeSpawn: 2
+  Damage_bullet: 50
+  BulletSpeed: 100
+  NumerOfGun: 0
+  target: {fileID: 0}
+  BulletPrefab: {fileID: 2109812171567321033, guid: 6a69d817f25399645949a59d8aac56b3, type: 3}
+  ShutPrefab: {fileID: 0}
+  BulletShutPoint: {fileID: 0}
+  BulletObj: {fileID: 0}
+  ShutObj: {fileID: 0}
 --- !u!114 &7332440500948098734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,7 +503,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140997877217785035}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5220969, y: -0.02854215, z: 0.017485635, w: 0.8522291}
+  m_LocalRotation: {x: 0.52205515, y: -0.030507876, z: 0.018689888, w: 0.85216105}
   m_LocalPosition: {x: 18.8, y: 16.766281, z: 12.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -943,17 +981,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3e48e1a8796ef4ab00912817ed8405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exp: 0
-  lvl: 0
+  expValue: 0
+  level: 0
+  oreValue: 0
   currentHP: 1000
   maxHP: 1000
   _speedWalk: 4
   _speedRun: 6
   player_nomber: 2
   _characterController: {fileID: 0}
-  canMine: 0
   speedMine: 0
   damageMine: 100
+  overlapStone:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _overlapPoint: {fileID: 0}
+    _overlapType: 0
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 0.5
+    _positionOffset: {x: 0, y: 0, z: 0}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &5363512396308208682
 MonoBehaviour:
   m_ObjectHideFlags: 0

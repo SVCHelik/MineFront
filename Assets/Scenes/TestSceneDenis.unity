@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -926,8 +926,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e1dd1b2819f464f8ddf922ad30ac19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSpawn: 0.7
-  Damage_bullet: 50
+  timeSpawn: 1
+  Damage_bullet: 15
   BulletSpeed: 100
   NumerOfGun: 0
   target: {fileID: 0}
@@ -1973,23 +1973,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 576417401017234939, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.85222894
+      value: 0.85216105
       objectReference: {fileID: 0}
     - target: {fileID: 576417401017234939, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5220967
+      value: 0.52205515
       objectReference: {fileID: 0}
     - target: {fileID: 576417401017234939, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.028549245
+      value: -0.030507874
       objectReference: {fileID: 0}
     - target: {fileID: 576417401017234939, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.017489977
+      value: 0.018689886
       objectReference: {fileID: 0}
     - target: {fileID: 1584954467879336240, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_CenterOnActivate
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847326178180621569, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
+      propertyPath: Damage_bullet
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3432640198330337446, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2005,19 +2009,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3432640198330337446, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.85222894
+      value: 0.85216105
       objectReference: {fileID: 0}
     - target: {fileID: 3432640198330337446, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5220967
+      value: 0.52205515
       objectReference: {fileID: 0}
     - target: {fileID: 3432640198330337446, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.028549245
+      value: -0.030507874
       objectReference: {fileID: 0}
     - target: {fileID: 3432640198330337446, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.017489977
+      value: 0.018689886
       objectReference: {fileID: 0}
     - target: {fileID: 4108424835524380908, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: field of view
@@ -2048,8 +2052,12 @@ PrefabInstance:
       value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 5363512396308208682, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
+      propertyPath: timeSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363512396308208682, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: Damage_bullet
-      value: 377.7
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5555383304884807325, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: m_TagString
@@ -2104,8 +2112,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7332440500948098734, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332440500948098734, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
+      propertyPath: timeSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332440500948098734, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: Damage_bullet
-      value: 377.7
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9156368443943958060, guid: 108fab4230ec08c40886e3596b9dfbf6, type: 3}
       propertyPath: damageMine

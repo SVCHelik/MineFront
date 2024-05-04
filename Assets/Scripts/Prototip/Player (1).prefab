@@ -74,18 +74,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3e48e1a8796ef4ab00912817ed8405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exp: 0
-  lvl: 0
+  expValue: 0
+  level: 0
+  oreValue: 0
   currentHP: 0
   maxHP: 0
   _speedWalk: 4
   _speedRun: 6
   player_nomber: 2
   _characterController: {fileID: 0}
-  _CamF: {fileID: 0}
-  canMine: 0
   speedMine: 0
   damageMine: 0
+  overlapStone:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _overlapPoint: {fileID: 0}
+    _overlapType: 0
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 0.5
+    _positionOffset: {x: 0, y: 0, z: 0}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &2604645511900117578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,13 +107,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2410733745905845252}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38e1dd1b2819f464f8ddf922ad30ac19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeSpawn: 0.2
-  Damage_bullet: 40
+  Damage_bullet: 15
   BulletSpeed: 100
   NumerOfGun: 0
   target: {fileID: 0}

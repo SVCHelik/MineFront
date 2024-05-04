@@ -1,69 +1,74 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public Transform targetObject;
-    public float spawnRadius = 1f;
+    public Transform spawnPoint;
     public int maxBullets = 5;
+    public float orbitRadius = 2f;
+    public float Damage = 101f;
     public float rotationSpeed = 50f;
-    public float orbitSpeed = 20f;
-    public int bulletLifetime = 4;
-    public int bulletDelay = 14;
+    public float bulletLifetime = 5f;
+    public float respawnTime = 2f;
 
     private List<GameObject> bullets = new List<GameObject>();
-    private bool delayInProgress = false;
+
+    void Start()
+    {
+        StartCoroutine(SpawnAndDestroyBullets());
+    }
+
+    IEnumerator SpawnAndDestroyBullets()
+    {
+        float angleStep = 360f / maxBullets;
+
+        while (true)
+        {
+            for (int i = 0; i < maxBullets; i++)
+            {
+                float angle = i * angleStep;
+                Vector3 spawnPosition = spawnPoint.position + Quaternion.Euler(0, angle, 0) * (Vector3.forward * orbitRadius);
+                GameObject newBullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
+                newBullet.transform.SetParent(this.transform);
+                bullets.Add(newBullet);
+                Destroy(newBullet, bulletLifetime);
+            }
+
+            yield return new WaitForSeconds(respawnTime);
+
+            foreach (GameObject bullet in bullets)
+            {
+                Destroy(bullet);
+            }
+            bullets.Clear();
+        }
+    }
 
     void Update()
     {
-        if (!delayInProgress)
-        {
-            StartCoroutine(SpawnDelay());
-        }
-        foreach (Transform bullet in transform)
-        {
-            bullet.RotateAround(targetObject.position, Vector3.up, orbitSpeed * Time.deltaTime);
-        }
+        RotateBullets();
     }
 
-    void SpawnAllBullets()
+    void RotateBullets()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            if (bullets.Count >= maxBullets)
-            {
-                break;
-            }
-            float angle = i * 72f;
-
-            Vector3 spawnDirection = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad));
-            Vector3 spawnPosition = targetObject.position + spawnDirection * spawnRadius;
-
-            GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
-            bullets.Add(bullet);
-            bullet.transform.parent = transform;
-            bullet.transform.LookAt(transform.position);
-            Destroy(bullet, bulletLifetime);
-        }
-    }
-
-    IEnumerator SpawnDelay()
-    {
-        delayInProgress = true;
-
-        yield return new WaitForSeconds(bulletDelay);
-
         foreach (GameObject bullet in bullets)
         {
-            Destroy(bullet);
+            bullet.transform.RotateAround(spawnPoint.position, Vector3.up, rotationSpeed * Time.deltaTime);
         }
-        bullets.Clear();
-
-        SpawnAllBullets();
-
-        delayInProgress = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy")) // Проверяем, столкнулась ли пуля с врагом
+        {
+            Enemy enemy = other.GetComponent<Enemy>(); // Получаем скрипт Enemy с объекта врага
+
+            if (enemy != null)
+            {
+                enemy.ApplyDamage(Damage); // Вызываем функцию ApplyDamage из скрипта Enemy
+            }
+        }
+    }
 }
