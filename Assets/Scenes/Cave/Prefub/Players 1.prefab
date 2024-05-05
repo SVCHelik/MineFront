@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7789323081179469778}
   - component: {fileID: 8961790447228218974}
-  - component: {fileID: 4276933312534999566}
   - component: {fileID: 873161257715493962}
   - component: {fileID: 5455649128878632448}
   - component: {fileID: 4982130083020865979}
+  - component: {fileID: 1892828151323422671}
+  - component: {fileID: 4812213226215688132}
   m_Layer: 8
   m_Name: Player (1)
   m_TagString: Player
@@ -65,44 +66,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4276933312534999566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381944579450247116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3e48e1a8796ef4ab00912817ed8405, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expValue: 0
-  level: 0
-  oreValue: 0
-  currentHP: 1000
-  maxHP: 1000
-  _speedWalk: 4
-  _speedRun: 6
-  player_nomber: 2
-  _characterController: {fileID: 8961790447228218974}
-  speedMine: 0
-  damageMine: 100
-  overlapStone:
-    _searchMask:
-      serializedVersion: 2
-      m_Bits: 1024
-    _overlapPoint: {fileID: 7789323081179469778}
-    _overlapType: 1
-    _boxSize: {x: 1, y: 1, z: 1}
-    _sphereRadius: 3.5
-    _positionOffset: {x: 0, y: 0, z: 0}
-    _considerObstacles: 0
-    _obstaclesMask:
-      serializedVersion: 2
-      m_Bits: 0
-    _drawGizmos: 1
-    _gizmosColor: {r: 0, g: 1, b: 1, a: 0.27450982}
 --- !u!114 &873161257715493962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +132,120 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2.81
   m_Center: {x: 0, y: -0.63, z: 0}
+--- !u!114 &1892828151323422671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381944579450247116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2e81dd9f5cf6e6f4fa3a2cb5f85fe52e, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c3793e4f-dd6c-484c-b6a9-58a7b92d2214
+    m_ActionName: Player1/WASD[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4d2695a5-85c7-417e-809d-6e29d7e47c33
+    m_ActionName: Player1/Mine[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4812213226215688132}
+        m_TargetAssemblyTypeName: APlayer, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ab220bfa-52e6-4c01-9f45-b3c7dcf1655d
+    m_ActionName: Player2/Arrows[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e83b713-209d-4c6b-8a07-9ed8895e3063
+    m_ActionName: Player2/Mine[/Keyboard/rightShift]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player2
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &4812213226215688132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381944579450247116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9380b912c9f4b754dbb3bea3e47d3e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expCount: 0
+  level: 0
+  oreCount: 0
+  currentHP: 1000
+  maxHP: 1000
+  _speedWalk: 5
+  player_nomber: 0
+  _characterController: {fileID: 0}
+  _walkDirection: {x: 0, y: 0, z: 0}
+  _speed: 5
+  speedMine: 0
+  damageMine: 100
+  timer: 0
+  overlapMine:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _overlapPoint: {fileID: 0}
+    _overlapType: 0
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 0.5
+    _positionOffset: {x: 0, y: 0, z: 0}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
+  overlapAttack:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _overlapPoint: {fileID: 0}
+    _overlapType: 0
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 0.5
+    _positionOffset: {x: 0, y: 0, z: 0}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
+  fixDir: {x: 0, y: 0, z: 0}
 --- !u!1 &481880959261317142
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,10 +5369,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5667876904319092044}
   - component: {fileID: 1352472962278221480}
-  - component: {fileID: 6344943464154629342}
   - component: {fileID: 88316867499702672}
   - component: {fileID: 3199491760205560043}
   - component: {fileID: 3115448346427344141}
+  - component: {fileID: 8806655062083081877}
+  - component: {fileID: 1183046019221802645}
   - component: {fileID: 6852989705140932348}
   m_Layer: 8
   m_Name: Player
@@ -5348,44 +5426,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6344943464154629342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4047685777482905059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3e48e1a8796ef4ab00912817ed8405, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expValue: 0
-  level: 0
-  oreValue: 0
-  currentHP: 1000
-  maxHP: 1000
-  _speedWalk: 4
-  _speedRun: 6
-  player_nomber: 1
-  _characterController: {fileID: 1352472962278221480}
-  speedMine: 0
-  damageMine: 1008.7
-  overlapStone:
-    _searchMask:
-      serializedVersion: 2
-      m_Bits: 1024
-    _overlapPoint: {fileID: 5667876904319092044}
-    _overlapType: 1
-    _boxSize: {x: 1, y: 1, z: 1}
-    _sphereRadius: 3.5
-    _positionOffset: {x: 0, y: 0, z: 0}
-    _considerObstacles: 0
-    _obstaclesMask:
-      serializedVersion: 2
-      m_Bits: 0
-    _drawGizmos: 1
-    _gizmosColor: {r: 0, g: 1, b: 1, a: 0.27450982}
 --- !u!114 &88316867499702672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5453,6 +5493,120 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8806655062083081877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047685777482905059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2e81dd9f5cf6e6f4fa3a2cb5f85fe52e, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1183046019221802645}
+        m_TargetAssemblyTypeName: APlayer, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c3793e4f-dd6c-484c-b6a9-58a7b92d2214
+    m_ActionName: Player1/WASD[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4d2695a5-85c7-417e-809d-6e29d7e47c33
+    m_ActionName: Player1/Mine[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab220bfa-52e6-4c01-9f45-b3c7dcf1655d
+    m_ActionName: Player2/Arrows[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e83b713-209d-4c6b-8a07-9ed8895e3063
+    m_ActionName: Player2/Mine[/Keyboard/rightShift]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player1
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1183046019221802645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047685777482905059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3e48e1a8796ef4ab00912817ed8405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expCount: 0
+  level: 0
+  oreCount: 0
+  currentHP: 1000
+  maxHP: 1000
+  _speedWalk: 5
+  player_nomber: 1
+  _characterController: {fileID: 0}
+  _walkDirection: {x: 0, y: 0, z: 0}
+  _speed: 5
+  speedMine: 0
+  damageMine: 100
+  timer: 0
+  overlapMine:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _overlapPoint: {fileID: 0}
+    _overlapType: 0
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 0.5
+    _positionOffset: {x: 0, y: 0, z: 0}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
+  overlapAttack:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _overlapPoint: {fileID: 0}
+    _overlapType: 0
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 0.5
+    _positionOffset: {x: 0, y: 0, z: 0}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
+  fixDir: {x: 0, y: 0, z: 0}
 --- !u!135 &6852989705140932348
 SphereCollider:
   m_ObjectHideFlags: 0

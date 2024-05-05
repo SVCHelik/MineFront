@@ -12,7 +12,7 @@ public class ExpPart:pickableItem {
             RotateMove();
             if(Vector3.Distance(target.position, transform.position)<1){
                 isOnMove = false;
-                target.GetComponent<Player>().ApplyExp(value);
+                target.GetComponent<APlayer>().ApplyExp(value);
                 NightPool.Despawn(gameObject);
             }
         }
@@ -21,7 +21,7 @@ public class ExpPart:pickableItem {
     private void OnTriggerEnter(Collider other) {
         if(!isOnMove){
             if (other.gameObject.tag == "Player")            
-                if (other.gameObject.TryGetComponent(out Player player)){
+                if (other.gameObject.TryGetComponent(out APlayer player)){
                     target = other.transform;
                     isOnMove = true;
                 
